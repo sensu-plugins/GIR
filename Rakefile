@@ -24,7 +24,6 @@
 #   for details.
 #
 
-#require 'rubygems'
 require 'benchmark'
 require 'github_api'
 
