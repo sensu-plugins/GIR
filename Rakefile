@@ -29,14 +29,14 @@ require 'benchmark'
 require 'github_api'
 
 # Load our rake configuration
-require File.expand_path('../config/rake', __FILE__)
+require File.expand_path('../GIR/config/rake', __FILE__)
 
 # Load our helper files
-Dir[File.join(File.dirname(__FILE__), 'tasks', 'helpers', '*.rb')].sort.each do |f|
+Dir[File.join(File.dirname(__FILE__), 'GIR', 'tasks', 'helpers', '*.rb')].sort.each do |f|
   require f
 end
 
 # Load our tasks
-Dir[File.join(File.dirname(__FILE__), 'tasks', '*.rake')].sort.each do |f|
+Dir[File.join(File.dirname(__FILE__), 'GIR', 'tasks', '*.rake')].sort.each do |f|
   load f
 end

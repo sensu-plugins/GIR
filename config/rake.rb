@@ -48,8 +48,8 @@ STD_PLUGIN_LABELS = [{ name: 'Investigation Required', color: '5319e7' },
 # these labels are ones we don't push to waffle.io
 GITHUB_REMOVABLE_STD_LABELS = %w(duplicate invalid wontfix question)
 
-# Path settings for rake tasks
-PLUGINS_DIR = '../sensu-plugins-'
+# Path settings for rake task
+PLUGINS_DIR = File.join(TOPDIR, '../sensu-plugins-')
 PLUGIN      = ENV['plugin'] || nil
 PLUGIN_DIR  = PLUGIN.nil? ? nil : PLUGINS_DIR << PLUGIN
 
