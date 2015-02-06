@@ -64,3 +64,7 @@ namespace :github do
                          org: GITHUB_ORG unless @repo_list.include?(GITHUB_REPO)
   end
 end
+
+args = [:create_repo, :create_sensu_plugins_labels, :delete_github_labels]
+
+task default: repo_scaffold
