@@ -1,6 +1,6 @@
 ![GIR](http://www.roomwithamoose.com/pictures/official/gir_suit_stand_optimized.jpg)
 
-GIR is how things are going to get accomplished quickly, simply, and efficiently.  At the root it's nothing more than a ton of rake tasks for doing common things.  Where it gets important is when the plugins org grows to 20..30...40+ repos, then these tasks become awesome time savers.  We developed these and use them daily in our environment of 100+ cookbooks.
+GIR is how things are going to get accomplished quickly, simply, and efficiently.  At the root it's nothing more than a ton of rake tasks for doing common things.  Where it gets important is when the plugins org grows to 20..30...40+ repos, then these tasks become awesome time savers.  
 
 Currently there are two groups of tasks, those associated with managing Github repos and those associated with vagrant.
 
