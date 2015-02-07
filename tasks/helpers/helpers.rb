@@ -56,3 +56,7 @@ def set_auth
     c.oauth_token = GITHUB_TOKEN
   end
 end
+
+def get_template
+  File.read(TEMPLATE_FILE)
+end
