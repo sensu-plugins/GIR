@@ -59,7 +59,7 @@ namespace :github do
                          has_downloads: GITHUB_REPO_DOWNLOADS,
                          team_id: TEAM_ID,
                          org: GITHUB_ORG unless @repo_list.include?(GITHUB_REPO)
+    Rake::Task[:create_sensu_plugins_labels].invoke
+    Rake::Task[:delete_github_labels].invoke
   end
-  Rake::Task[:create_sensu_plugins_labels].invoke
-  Rake::Task[:delete_github_labels].invoke
 end
