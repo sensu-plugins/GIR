@@ -2,7 +2,6 @@
 #
 # github.rake
 #
-#
 # DESCRIPTION:
 #   These are designed to create and work with Github repos
 #
@@ -13,10 +12,8 @@
 #   all
 #
 # DEPENDENCIES:
-#   gem: github-api
 #
 # USAGE:
-#   ./repo-init.rb <gem name> <user name>
 #
 # NOTES:
 #
