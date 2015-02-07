@@ -1,3 +1,29 @@
+#! /usr/bin/env ruby
+#
+# rake
+#
+#
+# DESCRIPTION:
+#   configuration information for thr rake tasks
+#
+# OUTPUT:
+#   N/A
+#
+# PLATFORMS:
+#   all
+#
+# DEPENDENCIES:
+#
+# USAGE:
+#
+# NOTES:
+#
+# LICENSE:
+#   Copyright 2015 Yieldbot, Inc  <devops@yieldbot.com>
+#   Released under the same terms as Sensu (the MIT license); see LICENSE
+#   for details.
+#
+
 # Rake Configuration File
 # Disable echoing of sh commands (sh command output will still be displayed)
 RakeFileUtils.verbose_flag = false
@@ -6,7 +32,7 @@ RakeFileUtils.verbose_flag = false
 TOPDIR = File.expand_path(File.join(File.dirname(__FILE__), '..'))
 
 # Store your github token with the proper permissions in a file, this should
-# avoid having to worry about hardcoding it or forgeting it
+# allow you to avoid having to worry about hardcoding it or forgeting it
 #
 def acquire_git_token
   File.readlines(File.expand_path('~/.ssh/git_token')).each do |line|
