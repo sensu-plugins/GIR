@@ -86,6 +86,7 @@ GITHUB_REMOVABLE_STD_LABELS  = %w(duplicate invalid wontfix question)
 
 
 # Path settings for rake task
+TEMPLATE_DIR  = File.join(TOPDIR, 'templates')
 PLUGINS_DIR   = File.join(TOPDIR, '../sensu-plugins-')
 PLUGIN        = ENV['plugin'] || nil
 PLUGIN_DIR    = PLUGIN.nil? ? nil : PLUGINS_DIR << PLUGIN
