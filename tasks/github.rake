@@ -29,7 +29,7 @@
 namespace :github do
 
   desc 'Create a specific set of labels that are mapped to waffle.io'
-  task :create_sensu_plugins_labels do
+  task :create_sensu_plugins_labels => ['create_repo']  do
     acquire_label_list
     STD_PLUGIN_LABELS.each do |s|
       @github.issues.labels.create name:  s[:name],
@@ -40,7 +40,7 @@ namespace :github do
   end
 
   desc 'Delete a set of labels that we don\'t have mapped or need'
-  task :delete_github_labels do
+  task :delete_github_labels => ['create_repo'] do
     acquire_label_list
     GITHUB_REMOVABLE_STD_LABELS.each do |l|
       @github.issues.labels.delete label_name: l,
@@ -63,8 +63,6 @@ namespace :github do
                          team_id: TEAM_ID,
                          org: GITHUB_ORG unless @repo_list.include?(GITHUB_REPO)
   end
+  Rake::Task[:create_sensu_plugins_labels].invoke
+  Rake::Task[:delete_github_labels].invoke
 end
-
-args = [:create_repo, :create_sensu_plugins_labels, :delete_github_labels]
-
-task default: repo_scaffold
