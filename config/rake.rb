@@ -5,6 +5,15 @@ RakeFileUtils.verbose_flag = false
 # The top of the repository checkout
 TOPDIR = File.expand_path(File.join(File.dirname(__FILE__), '..'))
 
+# Store your github token with the proper permissions in a file, this should
+# avoid having to worry about hardcoding it or forgeting it
+#
+def acquire_git_token
+  File.readlines(File.expand_path('~/.ssh/git_token')).each do |line|
+    return line
+  end
+end
+
 # Gem Specifications
 REQUIRED_RUBY_VERSION       = '1.9.3'
 GEM_AUTHOR         = ['Yieldbot, Inc. and contributors']
@@ -29,7 +38,7 @@ LICENSE_EMAIL = 'devops@yieldbot.com'
 # Github Configurations
 GITHUB_ORG = 'sensu-plugins'
 SENSU_PLUGINS_HOMEPAGE = 'http://sensu-plugins.github.io'
-GITHUB_TOKEN = ''
+GITHUB_TOKEN = acquire_git_token
 GITHUB_USER = ENV['user'] || nil
 GITHUB_REPO = ENV['repo'] || nil
 TEAM_ID = 1253454
