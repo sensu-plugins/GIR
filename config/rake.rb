@@ -62,6 +62,7 @@ DEV_DEPENDENCIES       = [{ name: 'codeclimate-test-reporter', version: 'XXX' },
 LICENSE_EMAIL = 'devops@yieldbot.com'
 GEM_INITIAL_VERSION = '0.0.1.alpha.1'
 # Github Configurations
+#GITHUB_ORG                   = 'CaffeinatedEngineering'
 GITHUB_ORG                   = 'sensu-plugins'
 SENSU_PLUGINS_HOMEPAGE       = 'http://sensu-plugins.github.io'
 GITHUB_TOKEN                 = acquire_git_token
@@ -85,8 +86,8 @@ STD_PLUGIN_LABELS            = [{ name: 'Investigation Required', color: '5319e7
 GITHUB_REMOVABLE_STD_LABELS  = %w(duplicate invalid wontfix question)
 
 # Path settings for rake task
-TEMPLATE_DIR     = File.join(TOPDIR, 'file/templates')
-STATIC_DIR       = File.join(TOPDIR, 'file/static')
+TEMPLATE_DIR     = File.join(TOPDIR, 'files/templates')
+STATIC_DIR       = File.join(TOPDIR, 'files/static')
 PLUGINS_DIR      = File.join(TOPDIR, '../sensu-plugins-')
 GEM_TEMPLATE_DIR = File.join(TEMPLATE_DIR, 'gem')
 GEM_STATIC_DIR   = File.join(STATIC_DIR, 'gem')
