@@ -72,6 +72,8 @@ namespace :gem do
     end
   end
 
+  # need to check if it exists first
+  # this will fold into using this to update gems as well
   task :boilerplate do
     require 'erb' # this should be moved out to the Rakefile
     # need to validate the name follows some convention
@@ -80,16 +82,18 @@ namespace :gem do
     mkdir GEM_ROOT
     chdir GEM_ROOT
     mkdir_p ["lib/#{ GEM_ROOT }", 'bin']
-    cp_r(File.join(GEM_STATIC_DIR, 'gem/static/certs'), '.', :verbose => false)
-    cp_r(File.join(GEM_STATIC_DIR, 'gem/static/test'), '.', :verbose => false)
-    Rake::Task[:license].invoke
-    Rake::Task[:version].invoke
-    Rake::Task[:changelog].invoke
-    Rake::Task[:contributing].invoke
-    Rake::Task[:readme].invoke
-    Rake::Task[:gemspec].invoke
-    Rake::Task[:vagrantfile].invoke
-    Rake::Task[:Rakefile].invoke
+    #puts GEM_ROOT
+    #puts GEM_STATIC_DIR
+    cp_r(File.join(GEM_STATIC_DIR, 'certs'), '.', :verbose => false)
+    cp_r(File.join(GEM_STATIC_DIR, 'test'), '.', :verbose => false)
+    # Rake::Task[:license].invoke
+    # Rake::Task[:version].invoke
+    # Rake::Task[:changelog].invoke
+    # Rake::Task[:contributing].invoke
+    # Rake::Task[:readme].invoke
+    # Rake::Task[:gemspec].invoke
+    # Rake::Task[:vagrantfile].invoke
+    # Rake::Task[:Rakefile].invoke
 
   end
 end
