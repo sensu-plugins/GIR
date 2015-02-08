@@ -57,6 +57,6 @@ def set_auth
   end
 end
 
-def get_template
-  File.read(TEMPLATE_FILE)
+def get_template(input)
+  File.read(input)
 end
