@@ -60,7 +60,7 @@ DEV_DEPENDENCIES       = [{ name: 'codeclimate-test-reporter', version: 'XXX' },
 
 # Repo Boilerplater  Variables
 LICENSE_EMAIL = 'devops@yieldbot.com'
-
+GEM_INITIAL_VERSION = '0.0.1.alpha.1'
 # Github Configurations
 GITHUB_ORG                   = 'sensu-plugins'
 SENSU_PLUGINS_HOMEPAGE       = 'http://sensu-plugins.github.io'
@@ -84,10 +84,14 @@ STD_PLUGIN_LABELS            = [{ name: 'Investigation Required', color: '5319e7
 # these labels are ones we don't push to waffle.io
 GITHUB_REMOVABLE_STD_LABELS  = %w(duplicate invalid wontfix question)
 
-
 # Path settings for rake task
-TEMPLATE_DIR  = File.join(TOPDIR, 'templates')
-PLUGINS_DIR   = File.join(TOPDIR, '../sensu-plugins-')
+TEMPLATE_DIR     = File.join(TOPDIR, 'file/templates')
+STATIC_DIR       = File.join(TOPDIR, 'file/static')
+PLUGINS_DIR      = File.join(TOPDIR, '../sensu-plugins-')
+GEM_TEMPLATE_DIR = File.join(TEMPLATE_DIR, 'gem')
+GEM_STATIC_DIR   = File.join(STATIC_DIR, 'gem')
+GEM_ROOT         = ENV['gem'] || nil
+
 PLUGIN        = ENV['plugin'] || nil
 PLUGIN_DIR    = PLUGIN.nil? ? nil : PLUGINS_DIR << PLUGIN
 
