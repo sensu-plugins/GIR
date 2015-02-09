@@ -76,3 +76,8 @@ end
 def get_template(input)
   File.read(input)
 end
+
+def acquire_chdir_path
+  puts PROJECT_DIR
+  @plugin_dir.nil? ? PLUGINS_DIR : @plugin_dir
+end

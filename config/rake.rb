@@ -63,11 +63,11 @@ DEV_DEPENDENCIES       = [{ name: 'codeclimate-test-reporter', version: 'XXX' },
 LICENSE_EMAIL = 'devops@yieldbot.com'
 GEM_INITIAL_VERSION = '0.0.1.alpha.1'
 # Github Configurations
-# GITHUB_ORG                   = 'CaffeinatedEngineering'
-GITHUB_ORG                   = 'sensu-plugins'
+GITHUB_ORG                   = 'CaffeinatedEngineering'
+# GITHUB_ORG                   = 'sensu-plugins'
 SENSU_PLUGINS_HOMEPAGE       = 'http://sensu-plugins.github.io'
 GITHUB_TOKEN                 = acquire_git_token
-GITHUB_INITIAL_MILESTONE     ='v0.0.1'
+GITHUB_INITIAL_MILESTONE     = 'v0.0.1'
 # @github_user                 = ENV['user'] || nil
 TEAM_ID                      = 1_253_454
 PRIVATE_REPO                 = false
@@ -93,11 +93,5 @@ STATIC_DIR       = File.join(TOPDIR, 'files/static')
 PLUGINS_DIR      = File.join(PROJECT_DIR, 'sensu-plugins-')
 GEM_TEMPLATE_DIR = File.join(TEMPLATE_DIR, 'gem')
 GEM_STATIC_DIR   = File.join(STATIC_DIR, 'gem')
-@gem_root        = "sensu-plugins-#{ ENV['app']}" || nil
-
+@gem_root        = "sensu-plugins-#{ ENV['plugin']}" || nil
 @plugin_dir      = @plugin_name.nil? ? nil : PLUGINS_DIR << @plugin_name
-
-def acquire_chdir_path
-  puts PROJECT_DIR
-  @plugin_dir.nil? ? PLUGINS_DIR : @plugin_dir
-end
