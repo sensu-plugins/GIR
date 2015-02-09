@@ -1,16 +1,24 @@
 namespace :vagrant do
 
-  desc 'Destroy VM used for development and testing'
+  desc 'Destroy VM will also delete the repo from the local machine if \'remove\' is passed to the task'
   task :destroy do
+    remove = ARGV.last
+    task remove.to_sym do; end
     Dir.chdir(acquire_chdir_path) do
+      puts acquire_chdir_path
       run_command('vagrant destroy --force')
+      rm_r(acquire_chdir_path) if remove == 'remove'
     end
   end
 
-  desc 'Destroy VM used for development and testing in a clean manner'
+  desc 'Destroy VM in a clean manner will also delete the repo from the local machine if \'remove\' is passed to the task'
   task :destroy_clean do
+    remove = ARGV.last
+    task remove.to_sym do; end
     Dir.chdir(acquire_chdir_path) do
-      run_command('vagrant destroy')
+      puts acquire_chdir_path
+      run_command('vagrant destroy --force')
+      rm_r(acquire_chdir_path) if remove == 'remove'
     end
   end
 
@@ -24,14 +32,14 @@ namespace :vagrant do
     end
   end
 
-  desc 'Halt VM used for development and testing'
+  desc 'Halt VM'
   task :halt do
     Dir.chdir(acquire_chdir_path) do
       run_command('vagrant halt --force')
     end
   end
 
-  desc 'Halt VM used for development and testing in a clean manner'
+  desc 'Halt VM in a clean manner'
   task :halt_clean do
     Dir.chdir(acquire_chdir_path) do
       run_command('vagrant halt')
@@ -60,20 +68,35 @@ namespace :vagrant do
     end
   end
 
-  desc 'Start up a VM for development and testing'
+  desc 'Start the VM, will automatically perform a git clone if the repo is not present on the local machine'
   task :up do
-    Dir.chdir(acquire_chdir_path) do
-      run_command('vagrant up')
+      if Dir.exist?(acquire_chdir_path)
+        Dir.chdir(acquire_chdir_path) do
+        run_command('vagrant up')
+      end
+      else
+        set_github_repo_name
+        `git clone git@github.com:sensu-plugins/#{ @github_repo }.git`
+        Dir.chdir(acquire_chdir_path) do
+          run_command('vagrant up')
+        end
+      end
     end
-  end
 
-  desc 'Start up a VM for development and testing and provision it'
+  desc 'Start up a VM and provision it, will automatically perform a git clone if the repo is not present on the local machine'
   task :up_provision do
-    Dir.chdir(acquire_chdir_path) do
+    if Dir.exist?(acquire_chdir_path)
+      Dir.chdir(acquire_chdir_path) do
       run_command('vagrant up --provision')
     end
+    else
+      set_github_repo_name
+      `git clone git@github.com:sensu-plugins/#{ @github_repo }.git`
+      Dir.chdir(acquire_chdir_path) do
+        run_command('vagrant up --provision')
+      end
+    end
   end
-end
 
 task vagrant: 'vagrant:status'
 
@@ -104,4 +127,5 @@ def seconds_to_units(seconds)
       result[0, 0] = result.shift.divmod(unitsize)
       result
     end
+  end
 end
