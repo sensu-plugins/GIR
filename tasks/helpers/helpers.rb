@@ -57,7 +57,7 @@ def acquire_ms_list
   @ms_list = []
   (@github.issues.milestones.list user: GITHUB_ORG,
                                   repo: @github_repo).each do |l|
-    @ms_list << l[:name]
+    @ms_list << l[:title]
   end
 end
 
@@ -78,6 +78,5 @@ def get_template(input)
 end
 
 def acquire_chdir_path
-  puts PROJECT_DIR
   @plugin_dir.nil? ? PLUGINS_DIR : @plugin_dir
 end

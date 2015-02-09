@@ -63,8 +63,8 @@ DEV_DEPENDENCIES       = [{ name: 'codeclimate-test-reporter', version: 'XXX' },
 LICENSE_EMAIL = 'devops@yieldbot.com'
 GEM_INITIAL_VERSION = '0.0.1.alpha.1'
 # Github Configurations
-GITHUB_ORG                   = 'CaffeinatedEngineering'
-# GITHUB_ORG                   = 'sensu-plugins'
+# GITHUB_ORG                   = 'CaffeinatedEngineering'
+GITHUB_ORG                   = 'sensu-plugins'
 SENSU_PLUGINS_HOMEPAGE       = 'http://sensu-plugins.github.io'
 GITHUB_TOKEN                 = acquire_git_token
 GITHUB_INITIAL_MILESTONE     = 'v0.0.1'
@@ -81,10 +81,13 @@ STD_PLUGIN_LABELS            = [{ name: 'Investigation Required', color: '5319e7
                                 { name: 'In Progress', color: 'fad8c7' },
                                 { name: 'Community Feedback Requested', color: 'fbca04' },
                                 { name: 'Developer Feedback Requested', color: 'c7def8' },
-                                { name: 'Refactor', color: '005200' }]
+                                { name: 'Refactor', color: '005200' },
+                                # { name: 'Bug', color: 'fc2929' },
+                                { name: 'Enhancement', color: '84b6eb' }]
+                                # { name: 'Help Wanted', color: '159818' }]
 
 # these labels are ones we don't push to waffle.io
-GITHUB_REMOVABLE_STD_LABELS  = %w(duplicate invalid wontfix question)
+GITHUB_REMOVABLE_STD_LABELS  = ['duplicate' 'invalid' 'wontfix' 'question' 'enhancement']
 
 # Path settings for rake tasks
 @plugin_name     = ENV['plugin'] || nil
