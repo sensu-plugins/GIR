@@ -1,5 +1,6 @@
 namespace :gem do
 
+  desc 'Generate the gem License from a template'
   task :license do
     require 'erb' # this should be moved out to the Rakefile
     template_file = File.join(GEM_TEMPLATE_DIR, 'LICENSE.erb')
@@ -9,6 +10,7 @@ namespace :gem do
     end
   end
 
+  desc 'Generate a version module from a template'
   task :version do
     require 'erb' # this should be moved out to the Rakefile
     template_file = File.join(GEM_TEMPLATE_DIR, 'sensu-plugins-version.rb.erb')
@@ -18,6 +20,7 @@ namespace :gem do
     end
   end
 
+  desc 'Generate an initial CHANGELOG from a template'
   task :changelog do
     require 'erb' # this should be moved out to the Rakefile
     template_file = File.join(GEM_TEMPLATE_DIR, 'CHANGELOG.md.erb')
@@ -27,6 +30,7 @@ namespace :gem do
     end
   end
 
+  desc 'Generate a copy of the Developer\'s Guidelines from a template'
   task :contributing do
     require 'erb' # this should be moved out to the Rakefile
     template_file = File.join(GEM_TEMPLATE_DIR, 'CONTRIBUTING.md.erb')
@@ -36,6 +40,7 @@ namespace :gem do
     end
   end
 
+  desc 'Generate an inital README from a template'
   task :readme do
     require 'erb' # this should be moved out to the Rakefile
     template_file = File.join(GEM_TEMPLATE_DIR, 'README.md.erb')
@@ -45,6 +50,7 @@ namespace :gem do
     end
   end
 
+  desc 'Generate an initial gemspec from a template'
   task :gemspec do
     require 'erb' # this should be moved out to the Rakefile
     template_file = File.join(GEM_TEMPLATE_DIR, 'sensu-plugins.gemspec.erb')
@@ -54,6 +60,7 @@ namespace :gem do
     end
   end
 
+  desc 'Generate a Vagrantfile from a template'
   task :vagrantfile do
     require 'erb' # this should be moved out to the Rakefile
     template_file = File.join(GEM_TEMPLATE_DIR, 'Vagrantfile.erb')
@@ -63,6 +70,7 @@ namespace :gem do
     end
   end
 
+  desc 'Generate a rakefile from a template'
   task :rakefile do
     require 'erb' # this should be moved out to the Rakefile
     template_file = File.join(GEM_TEMPLATE_DIR, 'Rakefile.erb')
@@ -72,6 +80,7 @@ namespace :gem do
     end
   end
 
+  desc 'Scaffold a base directory similar to `bundle gem`'
   # need to check if it exists first
   # this will fold into using this to update gems as well
   task :boilerplate do

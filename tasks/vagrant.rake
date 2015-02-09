@@ -1,13 +1,13 @@
 namespace :vagrant do
 
-  desc 'Destroy VM used for integration tests'
+  desc 'Destroy VM used for development and testing'
   task :destroy do
     Dir.chdir(acquire_chdir_path) do
       run_command('vagrant destroy --force')
     end
   end
 
-  desc 'Destroy VM used for integration tests in a clean manner'
+  desc 'Destroy VM used for development and testing in a clean manner'
   task :destroy_clean do
     Dir.chdir(acquire_chdir_path) do
       run_command('vagrant destroy')
@@ -24,21 +24,21 @@ namespace :vagrant do
     end
   end
 
-  desc 'Halt VM used for integration tests'
+  desc 'Halt VM used for development and testing'
   task :halt do
     Dir.chdir(acquire_chdir_path) do
       run_command('vagrant halt --force')
     end
   end
 
-  desc 'Halt VM used for integration tests in a clean manner'
+  desc 'Halt VM used for development and testing in a clean manner'
   task :halt_clean do
     Dir.chdir(acquire_chdir_path) do
       run_command('vagrant halt')
     end
   end
 
-  desc 'Reload the Vagrant'
+  desc 'Reload the Vagrantfile'
   task :reload do
     Dir.chdir(acquire_chdir_path) do
       run_command('vagrant reload')
@@ -60,14 +60,14 @@ namespace :vagrant do
     end
   end
 
-  desc 'Start up a VM'
+  desc 'Start up a VM for development and testing'
   task :up do
     Dir.chdir(acquire_chdir_path) do
       run_command('vagrant up')
     end
   end
 
-  desc 'Start up a VM and provision'
+  desc 'Start up a VM for development and testing and provision it'
   task :up_provision do
     Dir.chdir(acquire_chdir_path) do
       run_command('vagrant up --provision')

@@ -36,7 +36,7 @@ namespace :github do
     end
   end
 
-  desc 'Create an initial milestones'
+  desc 'Create an initial milestone'
   task :create_initial_milestone do
     acquire_ms_list
     @github.issues.milestones.create title: GITHUB_INITIAL_MILESTONE,
@@ -54,7 +54,7 @@ namespace :github do
     end
   end
 
-  desc 'Create a github repo with the necessary features'
+  desc 'Create a github repo with the necessary features(requires org Admin privilages)'
   task :create_repo do
     acquire_repo_list
     @github.repos.create name: @github_repo,
