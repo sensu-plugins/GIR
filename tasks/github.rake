@@ -65,7 +65,7 @@ namespace :github do
                          has_wiki: GITHUB_WIKI,
                          auto_init: GITHUB_AUTO_INIT,
                          has_downloads: @github_repo_DOWNLOADS,
-                         #team_id: TEAM_ID,
+                         team_id: TEAM_ID,
                          org: GITHUB_ORG unless @repo_list.include?(@github_repo)
      Rake::Task['github:create_sensu_plugins_labels'].invoke
      Rake::Task['github:delete_github_labels'].invoke

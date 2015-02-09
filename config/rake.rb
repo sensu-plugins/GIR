@@ -30,6 +30,7 @@ RakeFileUtils.verbose_flag = false
 
 # The top of the repository checkout
 TOPDIR = File.expand_path(File.join(File.dirname(__FILE__), '..'))
+PROJECT_DIR = File.expand_path(File.join(File.dirname(__FILE__), '../..'))
 
 # Store your github token with the proper permissions in a file, this should
 # allow you to avoid having to worry about hardcoding it or forgeting it
@@ -62,13 +63,13 @@ DEV_DEPENDENCIES       = [{ name: 'codeclimate-test-reporter', version: 'XXX' },
 LICENSE_EMAIL = 'devops@yieldbot.com'
 GEM_INITIAL_VERSION = '0.0.1.alpha.1'
 # Github Configurations
-#GITHUB_ORG                   = 'CaffeinatedEngineering'
+# GITHUB_ORG                   = 'CaffeinatedEngineering'
 GITHUB_ORG                   = 'sensu-plugins'
 SENSU_PLUGINS_HOMEPAGE       = 'http://sensu-plugins.github.io'
 GITHUB_TOKEN                 = acquire_git_token
-GITHUB_USER                  = ENV['user'] || nil
-GITHUB_REPO                  = ENV['repo'] || nil
-TEAM_ID                      = 1253454
+GITHUB_INITIAL_MILESTONE     ='v0.0.1'
+# @github_user                 = ENV['user'] || nil
+TEAM_ID                      = 1_253_454
 PRIVATE_REPO                 = false
 GITHUB_ISSUES                = true
 GITHUB_WIKI                  = false
@@ -85,17 +86,18 @@ STD_PLUGIN_LABELS            = [{ name: 'Investigation Required', color: '5319e7
 # these labels are ones we don't push to waffle.io
 GITHUB_REMOVABLE_STD_LABELS  = %w(duplicate invalid wontfix question)
 
-# Path settings for rake task
+# Path settings for rake tasks
+@plugin_name     = ENV['plugin'] || nil
 TEMPLATE_DIR     = File.join(TOPDIR, 'files/templates')
 STATIC_DIR       = File.join(TOPDIR, 'files/static')
-PLUGINS_DIR      = File.join(TOPDIR, '../sensu-plugins-')
+PLUGINS_DIR      = File.join(PROJECT_DIR, 'sensu-plugins-')
 GEM_TEMPLATE_DIR = File.join(TEMPLATE_DIR, 'gem')
 GEM_STATIC_DIR   = File.join(STATIC_DIR, 'gem')
-GEM_ROOT         = ENV['gem'] || nil
+@gem_root        = "sensu-plugins-#{ ENV['app']}" || nil
 
-PLUGIN        = ENV['plugin'] || nil
-PLUGIN_DIR    = PLUGIN.nil? ? nil : PLUGINS_DIR << PLUGIN
+@plugin_dir      = @plugin_name.nil? ? nil : PLUGINS_DIR << @plugin_name
 
 def acquire_chdir_path
-  PLUGIN_DIR.nil? ? PLUGINS_DIR : PLUGIN_DIR
+  puts PROJECT_DIR
+  @plugin_dir.nil? ? PLUGINS_DIR : @plugin_dir
 end
