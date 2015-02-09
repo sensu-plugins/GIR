@@ -12,9 +12,9 @@
 #
 # DEPENDENCIES:
 #   gem: github-api
+#   gem: benchmark
 #
 # USAGE:
-#   ./repo-init.rb <gem name> <user name>
 #
 # NOTES:
 #
