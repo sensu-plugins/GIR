@@ -32,8 +32,16 @@ namespace :github do
       @github.issues.labels.create name:  s[:name],
                                    color: s[:color],
                                    user:  GITHUB_ORG,
-                                   repo:  GITHUB_REPO unless @current_list.include?(s[:name])
+                                   repo:  @github_repo unless @current_list.include?(s[:name])
     end
+  end
+
+  desc 'Create an initial milestones'
+  task :create_initial_milestone => ['create_repo']  do
+    acquire_ms_list
+    @github.issues.milestones.create title: GITHUB_INITIAL_MILESTONE,
+                                     user:  GITHUB_ORG,
+                                     repo:  @github_repo unless @ms_list.include?(GITHUB_INITIAL_MILESTONE)
   end
 
   desc 'Delete a set of labels that we don\'t have mapped or need'
@@ -42,24 +50,25 @@ namespace :github do
     GITHUB_REMOVABLE_STD_LABELS.each do |l|
       @github.issues.labels.delete label_name: l,
                                    user: GITHUB_ORG,
-                                   repo: GITHUB_REPO if @current_list.include?(l)
+                                   repo: @github_repo if @current_list.include?(l)
     end
   end
 
   desc 'Create a github repo with the necessary features'
   task :create_repo do
     acquire_repo_list
-    @github.repos.create name: GITHUB_REPO,
+    @github.repos.create name: @github_repo,
                          description: 'Add a description',
                          homepage: SENSU_PLUGINS_HOMEPAGE,
                          private: PRIVATE_REPO,
                          has_issues: GITHUB_ISSUES,
                          has_wiki: GITHUB_WIKI,
                          auto_init: GITHUB_AUTO_INIT,
-                         has_downloads: GITHUB_REPO_DOWNLOADS,
-                         team_id: TEAM_ID,
-                         org: GITHUB_ORG unless @repo_list.include?(GITHUB_REPO)
-    #Rake::Task[:create_sensu_plugins_labels].invoke
-    #Rake::Task[:delete_github_labels].invoke
+                         has_downloads: @github_repo_DOWNLOADS,
+                         #team_id: TEAM_ID,
+                         org: GITHUB_ORG unless @repo_list.include?(@github_repo)
+     Rake::Task['github:create_sensu_plugins_labels'].invoke
+     Rake::Task['github:delete_github_labels'].invoke
+     Rake::Task['github:create_initial_milestone'].invoke
   end
 end
