@@ -1,6 +1,6 @@
 ![GIR](http://www.roomwithamoose.com/pictures/official/gir_suit_stand_optimized.jpg)
 
-GIR is how things developers  can get things accomplished quickly, simply, and efficiently.  At the root it's nothing more than a ton of rake tasks for doing common things.  Where it gets helpful is when the sensu-plugins org grows to 20..30...40+ repos, then these tasks become awesome time and disk space savers.  
+GIR is how developers can get things accomplished quickly, simply, and efficiently.  At the root it's nothing more than a ton of rake tasks for doing common things.  Where it gets helpful is when the sensu-plugins org grows to 20..30...40+ repos, then these tasks become awesome time and disk space savers.  
 
 ### Initial Setup
 
