@@ -84,7 +84,7 @@ STD_PLUGIN_LABELS            = [{ name: 'Investigation Required', color: '5319e7
                                 { name: 'Refactor', color: '005200' },
                                 # { name: 'Bug', color: 'fc2929' },
                                 { name: 'Enhancement', color: '84b6eb' }]
-                                # { name: 'Help Wanted', color: '159818' }]
+# { name: 'Help Wanted', color: '159818' }]
 
 # these labels are ones we don't push to waffle.io
 GITHUB_REMOVABLE_STD_LABELS  = ['duplicate' 'invalid' 'wontfix' 'question' 'enhancement']
