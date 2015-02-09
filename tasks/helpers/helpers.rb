@@ -30,9 +30,10 @@
 #
 def acquire_label_list
   set_auth
+  set_github_repo_name
   @current_list = []
   (@github.issues.labels.list user: GITHUB_ORG,
-                              repo: GITHUB_REPO).each do |l|
+                              repo: @github_repo).each do |l|
     @current_list << l[:name]
   end
 end
@@ -43,9 +44,20 @@ end
 #
 def acquire_repo_list
   set_auth
+  set_github_repo_name
   @repo_list = []
   (@github.repos.list org: GITHUB_ORG).each do |l|
     @repo_list << l[:name]
+  end
+end
+
+def acquire_ms_list
+  set_auth
+  set_github_repo_name
+  @ms_list = []
+  (@github.issues.milestones.list user: GITHUB_ORG,
+                                  repo: @github_repo).each do |l|
+    @ms_list << l[:name]
   end
 end
 
@@ -55,6 +67,10 @@ def set_auth
   @github = Github.new do |c|
     c.oauth_token = GITHUB_TOKEN
   end
+end
+
+def set_github_repo_name
+  @github_repo = "sensu-plugins-#{ @plugin_name }"
 end
 
 def get_template(input)
