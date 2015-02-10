@@ -98,3 +98,5 @@ GEM_TEMPLATE_DIR = File.join(TEMPLATE_DIR, 'gem')
 GEM_STATIC_DIR   = File.join(STATIC_DIR, 'gem')
 @gem_root        = "sensu-plugins-#{ ENV['plugin']}" || nil
 @plugin_dir      = @plugin_name.nil? ? nil : PLUGINS_DIR << @plugin_name
+
+PLUGIN_CLONE_ADDRESS = "git@github.com:sensu-plugins/sensu-plugins-#{ @plugin_name }.git"

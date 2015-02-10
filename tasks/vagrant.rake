@@ -5,7 +5,6 @@ namespace :vagrant do
     remove = ARGV.last
     task remove.to_sym do; end
     Dir.chdir(acquire_chdir_path) do
-      puts acquire_chdir_path
       run_command('vagrant destroy --force')
       rm_r(acquire_chdir_path) if remove == 'remove'
     end
@@ -75,8 +74,7 @@ namespace :vagrant do
         run_command('vagrant up')
       end
       else
-        set_github_repo_name
-        `git clone git@github.com:sensu-plugins/#{ @github_repo }.git`
+        Rake::Task['git:clone'].invoke
         Dir.chdir(acquire_chdir_path) do
           run_command('vagrant up')
         end
@@ -90,8 +88,7 @@ namespace :vagrant do
       run_command('vagrant up --provision')
     end
     else
-      set_github_repo_name
-      `git clone git@github.com:sensu-plugins/#{ @github_repo }.git`
+      Rake::Task['git:clone'].invoke
       Dir.chdir(acquire_chdir_path) do
         run_command('vagrant up --provision')
       end
