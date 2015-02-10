@@ -54,6 +54,17 @@ namespace :github do
     end
   end
 
+  desc 'Get a list of all plugin repos'
+  task :list_repos do
+    set_auth
+    printf("%-30s %-30s %-60s\n", 'Name', 'Plugin', 'Description')
+    (@github.repos.list org: GITHUB_ORG).each do |l|
+      plugin = l[:name].gsub(/sensu-plugins-/, '')
+      printf("%-30s %-30s %-60s\n", l[:name], plugin, l[:description])
+    end
+
+  end
+
   desc 'Create a github repo with the necessary features(requires org Admin privilages)'
   task :create_repo do
     acquire_repo_list
