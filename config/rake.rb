@@ -68,7 +68,6 @@ GITHUB_ORG                   = 'sensu-plugins'
 SENSU_PLUGINS_HOMEPAGE       = 'http://sensu-plugins.github.io'
 GITHUB_TOKEN                 = acquire_git_token
 GITHUB_INITIAL_MILESTONE     = 'v0.0.1'
-# @github_user                 = ENV['user'] || nil
 TEAM_ID                      = 1_253_454
 PRIVATE_REPO                 = false
 GITHUB_ISSUES                = true
@@ -82,12 +81,12 @@ STD_PLUGIN_LABELS            = [{ name: 'Investigation Required', color: '5319e7
                                 { name: 'Community Feedback Requested', color: 'fbca04' },
                                 { name: 'Developer Feedback Requested', color: 'c7def8' },
                                 { name: 'Refactor', color: '005200' },
-                                # { name: 'Bug', color: 'fc2929' },
+                                { name: 'Bug', color: 'fc2929' },
                                 { name: 'Enhancement', color: '84b6eb' }]
-# { name: 'Help Wanted', color: '159818' }]
+                                # { name: 'Help Wanted', color: '159818' }]
 
 # these labels are ones we don't push to waffle.io
-GITHUB_REMOVABLE_STD_LABELS  = ['duplicate' 'invalid' 'wontfix' 'question' 'enhancement']
+GITHUB_REMOVABLE_STD_LABELS  = ['duplicate', 'invalid', 'wontfix', 'question', 'enhancement', 'bug']
 
 # Path settings for rake tasks
 @plugin_name     = ENV['plugin'] || nil

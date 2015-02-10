@@ -47,10 +47,10 @@ namespace :github do
   desc 'Delete a set of labels that we don\'t have mapped or need'
   task :delete_github_labels do
     acquire_label_list
-    GITHUB_REMOVABLE_STD_LABELS.each do |l|
-      @github.issues.labels.delete label_name: l,
+    GITHUB_REMOVABLE_STD_LABELS.each do |s|
+      @github.issues.labels.delete label_name: s,
                                    user: GITHUB_ORG,
-                                   repo: @github_repo if @current_list.include?(l)
+                                   repo: @github_repo if @current_list.include?(s)
     end
   end
 
