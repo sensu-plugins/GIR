@@ -86,13 +86,11 @@ namespace :gem do
   task :boilerplate do
     require 'erb' # this should be moved out to the Rakefile
     # need to validate the name follows some convention
-    #@gem_class = @gem_root.split('-').map(&:capitalize).join
-
     mkdir @gem_root
     chdir @gem_root
+    `git init`
+    `git remote add origin git@github.com:sensu-plugins/#{ @gem_root }.git`
     mkdir_p ["lib/#{ @gem_root }", 'bin']
-    # puts @gem_root
-    # puts GEM_STATIC_DIR
     cp_r(File.join(GEM_STATIC_DIR, 'certs'), '.', verbose: false)
     cp_r(File.join(GEM_STATIC_DIR, 'test'), '.', verbose: false)
     Rake::Task['gem:license'].invoke
