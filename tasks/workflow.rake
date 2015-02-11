@@ -24,4 +24,9 @@ namespace :workflow do
   task :build_gem do
     puts 'needs implementation'
   end
+
+  desc 'Remove a repo'
+  task :remove do
+    `rm -rf #{ @gem_root }`
+  end
 end
