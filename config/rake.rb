@@ -101,6 +101,10 @@ VAGRANT_BOX        = 'chef/centos-6.6'
 DOWNLOAD_CHECKSUM  = true
 CHECKSUM_TYPE      = 'md5'
 
+# readme.md.erb
+PUBLIC_KEY = 'https://raw.githubusercontent.com/sensu-plugins/sensu-plugins.github.io/master/certs/sensu-plugins.pem'
+
+
 #######################################
 #                                     #
 # Github Configurations               #
