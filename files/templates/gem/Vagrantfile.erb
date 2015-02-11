@@ -5,13 +5,13 @@ VAGRANTFILE_API_VERSION = '2'
 
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
-  config.vm.box = 'chef/centos-6.6'
-  config.vm.box_download_checksum = true
-  config.vm.box_download_checksum_type = 'md5'
-  config.vm.hostname = 'sensu-plugins-dev'
+  config.vm.box = '<%= VAGRANT_BOX %>'
+  config.vm.box_download_checksum = <%= DOWNLOAD_CHECKSUM %>
+  config.vm.box_download_checksum_type = '<%= CHECKSUM_TYPE %>'
+  config.vm.hostname = '<%= VAGRANT_BOX_NAME %>'
 
   script = <<EOF
-  #sudo yum update -y
+  sudo yum update -y
   sudo yum groupinstall -y development
   sudo yum install -y vim nano
   #sudo yum install -y ImagicMagic ImageMagick-devel mysql-devel # needed for bundle install

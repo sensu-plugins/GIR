@@ -1,23 +1,4 @@
-MethodLength:
-  Max: 200
-
-LineLength:
-  Max: 160
-
-FileName:
-  Enabled: false
-
-PerceivedComplexity:
-  Enabled: false
-
-CyclomaticComplexity:
-  Enabled: false
-
-ClassLength:
-  Enabled: false
-
-IfUnlessModifier:
-  Enabled: false
-
-RegexpLiteral:
-  Enabled: false
+<% COPs.each do |c| %>
+<%= c[:name] %>
+    <%= c[:value]
+<% end %>

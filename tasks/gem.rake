@@ -86,7 +86,7 @@ namespace :gem do
   task :boilerplate do
     require 'erb' # this should be moved out to the Rakefile
     # need to validate the name follows some convention
-    GEM_CLASS = @gem_root.split('-').map(&:capitalize).join
+    #@gem_class = @gem_root.split('-').map(&:capitalize).join
 
     mkdir @gem_root
     chdir @gem_root

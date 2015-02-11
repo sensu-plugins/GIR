@@ -24,11 +24,9 @@
 #   for details.
 #
 
-# Rake Configuration File
 # Disable echoing of sh commands (sh command output will still be displayed)
 RakeFileUtils.verbose_flag = false
 
-# The top of the repository checkout
 TOPDIR = File.expand_path(File.join(File.dirname(__FILE__), '..'))
 PROJECT_DIR = File.expand_path(File.join(File.dirname(__FILE__), '../..'))
 
@@ -41,8 +39,43 @@ def acquire_git_token
   end
 end
 
-# Gem Specifications
-REQUIRED_RUBY_VERSION  = '1.9.3'
+#######################################
+#                                     #
+# Plugin Repo Boilerplate Variables   #
+#                                     #
+#######################################
+
+# CHANGELOG.md.erb
+GEM_INITIAL_VERSION = '0.0.1.alpha.1'
+
+# CONTRIBUTING.md.erb
+DEVELOPMENT_SITE = 'http://sensu-plugins.github.io/development/'
+
+# LICENSE.erb
+LICENSE_EMAIL = 'devops@yieldbot.com'
+
+# Rakefile.erb
+RAKEFILE_REQUIREMENTS = ['bundler/gem_tasks', 'rspec/core/rake_task', 'yard',
+                         'github/markup', 'rubocop/rake_task', 'redcarpet',
+                         'yard/rake/yardoc_task']
+
+# rubocop.yml.erb
+COPS = [{ name: 'MethodLength', value: 'Max: 200' },
+        { name: 'LineLength', value: 'Max: 160' },
+        { name: 'FileName', value: 'Enabled: false' },
+        { name: 'PerceivedComplexity', value: 'Enabled: false' },
+        { name: 'CyclomaticComplexity', value: 'Enabled: false' },
+        {  name: 'ClassLength', value: 'Enabled: false' },
+        { name: 'IfUnlessModifier', value: 'Enabled: false' },
+        { name: 'RegexpLiteral', value: 'Enabled: false' }]
+
+# Gem version module
+
+
+# Gemspec
+GEMSPEC_REQUIREMENTS   = ['date']
+PVT_KEY                = '~/.ssh/gem-private_key.pem'
+REQUIRED_RUBY_VERSION  = '>= 1.9.3'
 GEM_AUTHOR             = ['Yieldbot, Inc. and contributors']
 GEM_EMAIL              = '<sensu-users@googlegroups.com>'
 GEM_LICENSE            = 'MIT'
@@ -59,10 +92,21 @@ DEV_DEPENDENCIES       = [{ name: 'codeclimate-test-reporter', version: 'XXX' },
                           { name: 'yard',                      version: 'XXX' },
                           { name: 'pry',                       version: 'XXX' }]
 
-# Repo Boilerplater  Variables
-LICENSE_EMAIL = 'devops@yieldbot.com'
-GEM_INITIAL_VERSION = '0.0.1.alpha.1'
-# Github Configurations
+# travis.yml.erb
+TRAVIS_EMAIL = 'mattjones@yieldbot.com'
+
+# vagrantfile.erb
+VAGRANT_BOX_NAME   = 'sensu-plugins-dev'
+VAGRANT_BOX        = 'chef/centos-6.6'
+DOWNLOAD_CHECKSUM  = true
+CHECKSUM_TYPE      = 'md5'
+
+#######################################
+#                                     #
+# Github Configurations               #
+#                                     #
+#######################################
+
 # GITHUB_ORG                   = 'CaffeinatedEngineering'
 GITHUB_ORG                   = 'sensu-plugins'
 SENSU_PLUGINS_HOMEPAGE       = 'http://sensu-plugins.github.io'
@@ -74,6 +118,7 @@ GITHUB_ISSUES                = true
 GITHUB_WIKI                  = false
 GITHUB_AUTO_INIT             = false
 GITHUB_REPO_DOWNLOADS        = true
+PLUGIN_CLONE_ADDRESS         = "git@github.com:sensu-plugins/sensu-plugins-#{ @plugin_name }.git"
 
 # these labels are used by waffle.io for sorting issues into columns
 STD_PLUGIN_LABELS            = [{ name: 'Investigation Required', color: '5319e7' },
@@ -88,14 +133,21 @@ STD_PLUGIN_LABELS            = [{ name: 'Investigation Required', color: '5319e7
 # these labels are ones we don't push to waffle.io
 GITHUB_REMOVABLE_STD_LABELS  = ['duplicate', 'invalid', 'wontfix', 'question', 'enhancement', 'bug']
 
-# Path settings for rake tasks
-@plugin_name     = ENV['plugin'] || nil
+#######################################
+#                                     #
+# Path Settings                       #
+#                                     #
+#######################################
+
+# Static locations
 TEMPLATE_DIR     = File.join(TOPDIR, 'files/templates')
 STATIC_DIR       = File.join(TOPDIR, 'files/static')
 PLUGINS_DIR      = File.join(PROJECT_DIR, 'sensu-plugins-')
 GEM_TEMPLATE_DIR = File.join(TEMPLATE_DIR, 'gem')
 GEM_STATIC_DIR   = File.join(STATIC_DIR, 'gem')
+
+# User generated locations
+@plugin_name     = ENV['plugin'] || nil
 @gem_root        = "sensu-plugins-#{ ENV['plugin']}" || nil
 @plugin_dir      = @plugin_name.nil? ? nil : PLUGINS_DIR << @plugin_name
-
-PLUGIN_CLONE_ADDRESS = "git@github.com:sensu-plugins/sensu-plugins-#{ @plugin_name }.git"
+@gem_class       = @gem_root.split('-').map(&:capitalize).join
