@@ -41,6 +41,25 @@ end
 
 #######################################
 #                                     #
+# Path Settings                       #
+#                                     #
+#######################################
+
+# Static locations
+TEMPLATE_DIR     = File.join(TOPDIR, 'files/templates')
+STATIC_DIR       = File.join(TOPDIR, 'files/static')
+PLUGINS_DIR      = File.join(PROJECT_DIR, 'sensu-plugins-')
+GEM_TEMPLATE_DIR = File.join(TEMPLATE_DIR, 'gem')
+GEM_STATIC_DIR   = File.join(STATIC_DIR, 'gem')
+
+# User generated locations
+@plugin_name     = ENV['plugin'] || nil
+@gem_root        = "sensu-plugins-#{ ENV['plugin']}" || nil
+@plugin_dir      = @plugin_name.nil? ? nil : PLUGINS_DIR << @plugin_name
+@gem_class       = @gem_root.split('-').map(&:capitalize).join
+
+#######################################
+#                                     #
 # Plugin Repo Boilerplate Variables   #
 #                                     #
 #######################################
@@ -136,22 +155,3 @@ STD_PLUGIN_LABELS            = [{ name: 'Investigation Required', color: '5319e7
 
 # these labels are ones we don't push to waffle.io
 GITHUB_REMOVABLE_STD_LABELS  = ['duplicate', 'invalid', 'wontfix', 'question', 'enhancement', 'bug']
-
-#######################################
-#                                     #
-# Path Settings                       #
-#                                     #
-#######################################
-
-# Static locations
-TEMPLATE_DIR     = File.join(TOPDIR, 'files/templates')
-STATIC_DIR       = File.join(TOPDIR, 'files/static')
-PLUGINS_DIR      = File.join(PROJECT_DIR, 'sensu-plugins-')
-GEM_TEMPLATE_DIR = File.join(TEMPLATE_DIR, 'gem')
-GEM_STATIC_DIR   = File.join(STATIC_DIR, 'gem')
-
-# User generated locations
-@plugin_name     = ENV['plugin'] || nil
-@gem_root        = "sensu-plugins-#{ ENV['plugin']}" || nil
-@plugin_dir      = @plugin_name.nil? ? nil : PLUGINS_DIR << @plugin_name
-@gem_class       = @gem_root.split('-').map(&:capitalize).join
