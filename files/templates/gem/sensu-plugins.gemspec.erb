@@ -32,6 +32,6 @@ Gem::Specification.new do |s|
   s.required_ruby_version  = '<%= REQUIRED_RUBY_VERSION %>'
 
   <% DEV_DEPENDENCIES.each do |d| %>
-  s.add_development_dependency '<%= d[:name] %>' '<%= d[:version] %>'
+  s.add_development_dependency '<%= d[:name] %>', '<%= d[:version] %>'
   <% end %>
 end

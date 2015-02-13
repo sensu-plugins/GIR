@@ -100,7 +100,7 @@ GEM_EMAIL              = '<sensu-users@googlegroups.com>'
 GEM_LICENSE            = 'MIT'
 GEM_REQUIRE_PATHS      = ['lib']
 GEM_CERT_CHAIN         = ['certs/sensu-plugins.pem']
-GEM_PLATFORM           = Gem::Platform::RUBY
+GEM_PLATFORM           = 'Gem::Platform::RUBY'
 DEV_DEPENDENCIES       = [{ name: 'codeclimate-test-reporter', version: 'XXX' },
                           { name: 'rubocop',                   version: '~> 0.17.0' },
                           { name: 'rspec',                     version: '~> 3.1' },
@@ -116,9 +116,10 @@ TRAVIS_EMAIL = 'mattjones@yieldbot.com'
 
 # vagrantfile.erb
 VAGRANT_BOX_NAME   = 'sensu-plugins-dev'
-VAGRANT_BOX        = 'chef/centos-6.6'
+VAGRANT_BOX        = 'chef/centos-6.6'#, 'chef/freebsd-10.0', 'chef/ubuntu-14.04']
 DOWNLOAD_CHECKSUM  = true
 CHECKSUM_TYPE      = 'md5'
+
 
 # readme.md.erb
 PUBLIC_KEY = 'https://raw.githubusercontent.com/sensu-plugins/sensu-plugins.github.io/master/certs/sensu-plugins.pem'

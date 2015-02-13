@@ -59,6 +59,7 @@ namespace :github do
     set_auth
     printf("%-30s %-30s %-60s\n", 'Name', 'Plugin', 'Description')
     (@github.repos.list org: GITHUB_ORG).each do |l|
+      #puts l
       plugin = l[:name].gsub(/sensu-plugins-/, '')
       printf("%-30s %-30s %-60s\n", l[:name], plugin, l[:description])
     end

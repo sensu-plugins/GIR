@@ -1,10 +1,10 @@
-## Sensu-Plugins-disk-checks
+## Sensu-Plugins-<%= @plugin_name %>
 
-[![Build Status](https://travis-ci.org/sensu-plugins/<%= @gem_root %>.svg?branch=master)][1]
-[![Gem Version](https://badge.fury.io/rb/<%= @gem_root %>.svg)][2]
-[![Code Climate](https://codeclimate.com/github/sensu-plugins/<%= @gem_root %>/badges/gpa.svg)][3]
-[![Test Coverage](https://codeclimate.com/github/sensu-plugins/<%= @gem_root %>/badges/coverage.svg)][4]
-[![Dependency Status](https://gemnasium.com/sensu-plugins/<%= @gem_root %>.svg)][5]
+[![Build Status](https://travis-ci.org/sensu-plugins/sensu-plugins-<%= @plugin_name %>.svg?branch=master)](https://travis-ci.org/sensu-plugins/sensu-plugins-<%= @plugin_name %>)
+[![Gem Version](https://badge.fury.io/rb/sensu-plugins-<%= @plugin_name %>.svg)](http://badge.fury.io/rb/sensu-plugins-<%= @plugin_name %>)
+[![Code Climate](https://codeclimate.com/github/sensu-plugins/sensu-plugins-<%= @plugin_name %>/badges/gpa.svg)](https://codeclimate.com/github/sensu-plugins/sensu-plugins-<%= @plugin_name %>)
+[![Test Coverage](https://codeclimate.com/github/sensu-plugins/sensu-plugins-<%= @plugin_name %>/badges/coverage.svg)](https://codeclimate.com/github/sensu-plugins/sensu-plugins-<%= @plugin_name %>)
+[![Dependency Status](https://gemnasium.com/sensu-plugins/sensu-plugins-<%= @plugin_name %>.svg)](https://gemnasium.com/sensu-plugins/sensu-plugins-<%= @plugin_name %>)
 
 ## Functionality
 
@@ -41,7 +41,7 @@ Using the Sensu **sensu_gem** LWRP
 ```
 sensu_gem '<%= @gem_root %>' do
   options('--prerelease')
-  version '0.0.1.alpha.4'
+  version '0.0.1'
 end
 ```
 
@@ -49,14 +49,8 @@ Using the Chef **gem_package** resource
 ```
 gem_package '<%= @gem_root %>' do
   options('--prerelease')
-  version '0.0.1.alpha.4'
+  version '0.0.1'
 end
 ```
 
 ## Notes
-
-[1]:[https://travis-ci.org/sensu-plugins/<%= @gem_root %>]
-[2]:[http://badge.fury.io/rb/<%= @gem_root %>]
-[3]:[https://codeclimate.com/github/sensu-plugins/<%= @gem_root %>]
-[4]:[https://codeclimate.com/github/sensu-plugins/<%= @gem_root %>]
-[5]:[https://gemnasium.com/sensu-plugins/<%= @gem_root %>]

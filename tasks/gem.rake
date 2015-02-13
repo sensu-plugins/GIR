@@ -1,7 +1,7 @@
 namespace :gem do
 
   desc 'Generate the gem License from a template'
-  task :license do
+  task :drop_license do
     require 'erb' # this should be moved out to the Rakefile
     template_file = File.join(GEM_TEMPLATE_DIR, 'LICENSE.erb')
 
@@ -11,7 +11,7 @@ namespace :gem do
   end
 
   desc 'Generate a version module from a template'
-  task :version do
+  task :drop_version do
     require 'erb' # this should be moved out to the Rakefile
     template_file = File.join(GEM_TEMPLATE_DIR, 'sensu-plugins-version.rb.erb')
 
@@ -21,7 +21,7 @@ namespace :gem do
   end
 
   desc 'Generate an initial CHANGELOG from a template'
-  task :changelog do
+  task :drop_changelog do
     require 'erb' # this should be moved out to the Rakefile
     template_file = File.join(GEM_TEMPLATE_DIR, 'CHANGELOG.md.erb')
 
@@ -31,7 +31,7 @@ namespace :gem do
   end
 
   desc 'Generate a copy of the Developer\'s Guidelines from a template'
-  task :contributing do
+  task :drop_contributing do
     require 'erb' # this should be moved out to the Rakefile
     template_file = File.join(GEM_TEMPLATE_DIR, 'CONTRIBUTING.md.erb')
 
@@ -41,7 +41,7 @@ namespace :gem do
   end
 
   desc 'Generate an inital README from a template'
-  task :readme do
+  task :drop_readme do
     require 'erb' # this should be moved out to the Rakefile
     template_file = File.join(GEM_TEMPLATE_DIR, 'README.md.erb')
 
@@ -51,7 +51,7 @@ namespace :gem do
   end
 
   desc 'Generate an initial gemspec from a template'
-  task :gemspec do
+  task :drop_gemspec do
     require 'erb' # this should be moved out to the Rakefile
     template_file = File.join(GEM_TEMPLATE_DIR, 'sensu-plugins.gemspec.erb')
 
@@ -61,7 +61,7 @@ namespace :gem do
   end
 
   desc 'Generate a Vagrantfile from a template'
-  task :vagrantfile do
+  task :drop_vagrantfile do
     require 'erb' # this should be moved out to the Rakefile
     template_file = File.join(GEM_TEMPLATE_DIR, 'Vagrantfile.erb')
 
@@ -71,11 +71,31 @@ namespace :gem do
   end
 
   desc 'Generate a rakefile from a template'
-  task :rakefile do
+  task :drop_rakefile do
     require 'erb' # this should be moved out to the Rakefile
     template_file = File.join(GEM_TEMPLATE_DIR, 'Rakefile.erb')
 
     File.open(File.join(PROJECT_DIR, "#{ @gem_root }/Rakefile"), 'w+') do |f|
+      f.write(ERB.new(get_template(template_file)).result)
+    end
+  end
+
+  desc 'Generate a rubocop file from a template'
+  task :drop_rubocop do
+    require 'erb' # this should be moved out to the Rakefile
+    template_file = File.join(GEM_TEMPLATE_DIR, 'rubocop.yml.erb')
+
+    File.open(File.join(PROJECT_DIR, "#{ @gem_root }/.rubocop.yml"), 'w+') do |f|
+      f.write(ERB.new(get_template(template_file)).result)
+    end
+  end
+
+  desc 'Generate a travisCI file from a template'
+  task :drop_travis do
+    require 'erb' # this should be moved out to the Rakefile
+    template_file = File.join(GEM_TEMPLATE_DIR, 'travis.yml.erb')
+
+    File.open(File.join(PROJECT_DIR, "#{ @gem_root }/.travis.yml"), 'w+') do |f|
       f.write(ERB.new(get_template(template_file)).result)
     end
   end
@@ -91,16 +111,19 @@ namespace :gem do
     `git init`
     `git remote add origin git@github.com:sensu-plugins/#{ @gem_root }.git`
     mkdir_p ["lib/#{ @gem_root }", 'bin']
+    cp(File.join(GEM_STATIC_DIR, 'Gemfile'), '.', verbose: false)
+    cp(File.join(GEM_STATIC_DIR, 'gitignore'), './.gitignore', verbose: false)
     cp_r(File.join(GEM_STATIC_DIR, 'certs'), '.', verbose: false)
     cp_r(File.join(GEM_STATIC_DIR, 'test'), '.', verbose: false)
-    Rake::Task['gem:license'].invoke
-    Rake::Task['gem:version'].invoke
-    Rake::Task['gem:changelog'].invoke
-    Rake::Task['gem:contributing'].invoke
-    Rake::Task['gem:readme'].invoke
-    Rake::Task['gem:gemspec'].invoke
-    Rake::Task['gem:vagrantfile'].invoke
-    Rake::Task['gem:rakefile'].invoke
-
+    Rake::Task['gem:drop_license'].invoke
+    Rake::Task['gem:drop_version'].invoke
+    Rake::Task['gem:drop_changelog'].invoke
+    Rake::Task['gem:drop_contributing'].invoke
+    Rake::Task['gem:drop_readme'].invoke
+    Rake::Task['gem:drop_gemspec'].invoke
+    Rake::Task['gem:drop_vagrantfile'].invoke
+    Rake::Task['gem:drop_rakefile'].invoke
+    Rake::Task['gem:drop_rubocop'].invoke
+    Rake::Task['gem:drop_travis'].invoke
   end
 end
