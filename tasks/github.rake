@@ -24,7 +24,6 @@
 #
 
 namespace :github do
-
   desc 'Create a specific set of labels that are mapped to waffle.io'
   task :create_sensu_plugins_labels do
     acquire_label_list
@@ -58,28 +57,28 @@ namespace :github do
   task :list_repos do
     set_auth
     printf("%-30s %-30s %-60s\n", 'Name', 'Plugin', 'Description')
-      p1 = `curl -s 'https://api.github.com/orgs/sensu-plugins/repos?page=1'`
-      p2 = `curl -s 'https://api.github.com/orgs/sensu-plugins/repos?page=2'`
-      p1.each_line do |p|
-        if p.include?("\"name\":")
-          plugin = p.split("\"")[3].gsub(/sensu-plugins-/, '')
-          name = p.split("\"")[3]
-          printf("%-30s %-30s", name, plugin)
-        elsif p.include?("\"description\":")
-          description = p.split("\"")[3]
-          printf("%-60s\n", description)
-        end
+    p1 = `curl -s 'https://api.github.com/orgs/sensu-plugins/repos?page=1'`
+    p2 = `curl -s 'https://api.github.com/orgs/sensu-plugins/repos?page=2'`
+    p1.each_line do |p|
+      if p.include?("\"name\":")
+        plugin = p.split("\"")[3].gsub(/sensu-plugins-/, '')
+        name = p.split("\"")[3]
+        printf('%-30s %-30s', name, plugin)
+      elsif p.include?("\"description\":")
+        description = p.split("\"")[3]
+        printf("%-60s\n", description)
       end
-      p2.each_line do |p|
-        if p.include?("\"name\":")
-          plugin = p.split("\"")[3].gsub(/sensu-plugins-/, '')
-          name = p.split("\"")[3]
-          printf("%-30s %-30s", name, plugin)
-        elsif p.include?("\"description\":")
-          description = p.split("\"")[3]
-          printf("%-60s\n", description)
-        end
+    end
+    p2.each_line do |p|
+      if p.include?("\"name\":")
+        plugin = p.split("\"")[3].gsub(/sensu-plugins-/, '')
+        name = p.split("\"")[3]
+        printf('%-30s %-30s', name, plugin)
+      elsif p.include?("\"description\":")
+        description = p.split("\"")[3]
+        printf("%-60s\n", description)
       end
+    end
   end
 
   desc 'Create a github repo with the necessary features(requires org Admin privilages)'

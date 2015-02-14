@@ -1,5 +1,4 @@
 namespace :test do
-
   desc 'run rubocop to detect styntax errors'
   task :rubocop do
     set_github_repo_name
@@ -10,6 +9,5 @@ namespace :test do
   task :rubocop_fix do
     set_github_repo_name
     puts `rubocop -a #{ @github_repo }`
-
   end
 end

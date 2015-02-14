@@ -90,7 +90,6 @@ COPS = [{ name: 'MethodLength', value: 'Max: 200' },
 
 # Gem version module
 
-
 # Gemspec
 GEMSPEC_REQUIREMENTS   = ['date']
 PVT_KEY                = '~/.ssh/gem-private_key.pem'
@@ -116,14 +115,12 @@ TRAVIS_EMAIL = 'mattjones@yieldbot.com'
 
 # vagrantfile.erb
 VAGRANT_BOX_NAME   = 'sensu-plugins-dev'
-VAGRANT_BOX        = 'chef/centos-6.6'#, 'chef/freebsd-10.0', 'chef/ubuntu-14.04']
+VAGRANT_BOX        = 'chef/centos-6.6' # , 'chef/freebsd-10.0', 'chef/ubuntu-14.04']
 DOWNLOAD_CHECKSUM  = true
 CHECKSUM_TYPE      = 'md5'
 
-
 # readme.md.erb
 PUBLIC_KEY = 'https://raw.githubusercontent.com/sensu-plugins/sensu-plugins.github.io/master/certs/sensu-plugins.pem'
-
 
 #######################################
 #                                     #
@@ -152,7 +149,7 @@ STD_PLUGIN_LABELS            = [{ name: 'Investigation Required', color: '5319e7
                                 { name: 'Refactor', color: '005200' },
                                 { name: 'Bug', color: 'fc2929' },
                                 { name: 'Enhancement', color: '84b6eb' }]
-                                # { name: 'Help Wanted', color: '159818' }]
+# { name: 'Help Wanted', color: '159818' }]
 
 # these labels are ones we don't push to waffle.io
-GITHUB_REMOVABLE_STD_LABELS  = ['duplicate', 'invalid', 'wontfix', 'question', 'enhancement', 'bug']
+GITHUB_REMOVABLE_STD_LABELS  = %w(duplicate invalid wontfix question enhancement bug)

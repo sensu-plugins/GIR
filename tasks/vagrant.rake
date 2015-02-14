@@ -1,5 +1,4 @@
 namespace :vagrant do
-
   desc 'Destroy VM will also delete the repo from the local machine if \'remove\' is passed to the task'
   task :destroy do
     remove = ARGV.last
@@ -69,24 +68,24 @@ namespace :vagrant do
 
   desc 'Start the VM, will automatically perform a git clone if the repo is not present on the local machine'
   task :up do
-      if Dir.exist?(acquire_chdir_path)
-        Dir.chdir(acquire_chdir_path) do
+    if Dir.exist?(acquire_chdir_path)
+      Dir.chdir(acquire_chdir_path) do
         run_command('vagrant up')
       end
-      else
-        Rake::Task['git:clone'].invoke
-        Dir.chdir(acquire_chdir_path) do
-          run_command('vagrant up')
-        end
+    else
+      Rake::Task['git:clone'].invoke
+      Dir.chdir(acquire_chdir_path) do
+        run_command('vagrant up')
       end
     end
+  end
 
   desc 'Start up a VM and provision it, will automatically perform a git clone if the repo is not present on the local machine'
   task :up_provision do
     if Dir.exist?(acquire_chdir_path)
       Dir.chdir(acquire_chdir_path) do
-      run_command('vagrant up --provision')
-    end
+        run_command('vagrant up --provision')
+      end
     else
       Rake::Task['git:clone'].invoke
       Dir.chdir(acquire_chdir_path) do
@@ -95,34 +94,34 @@ namespace :vagrant do
     end
   end
 
-task vagrant: 'vagrant:status'
+  task vagrant: 'vagrant:status'
 
-def run_command(command)
-  puts 'Starting Vagrant...'
-  return_value = nil
-  results = Benchmark.measure do
-    system command
-    return_value = $CHILD_STATUS
+  def run_command(command)
+    puts 'Starting Vagrant...'
+    return_value = nil
+    results = Benchmark.measure do
+      system command
+      return_value = $CHILD_STATUS
+    end
+
+    print_status(results, return_value)
   end
 
-  print_status(results, return_value)
-end
-
-def print_status(results, return_value)
-  unless return_value.nil?
-    time_str = "#{seconds_to_units(results.real)}"
-    puts
-    puts 'Vagrant Statistics:'
-    puts 'Duration:   ' + (return_value.exitstatus == 0 ? time_str.green : time_str.red)
-  end
-end
-
-def seconds_to_units(seconds)
-  '%d days, %d hours, %d minutes, %d seconds' %
-    # the .reverse lets us put the larger units first for readability
-    [24, 60, 60].reverse.reduce([seconds]) do|result, unitsize|
-      result[0, 0] = result.shift.divmod(unitsize)
-      result
+  def print_status(results, return_value)
+    unless return_value.nil?
+      time_str = "#{seconds_to_units(results.real)}"
+      puts
+      puts 'Vagrant Statistics:'
+      puts 'Duration:   ' + (return_value.exitstatus == 0 ? time_str.green : time_str.red)
     end
   end
+
+  def seconds_to_units(seconds)
+    '%d days, %d hours, %d minutes, %d seconds' %
+      # the .reverse lets us put the larger units first for readability
+      [24, 60, 60].reverse.reduce([seconds]) do|result, unitsize|
+        result[0, 0] = result.shift.divmod(unitsize)
+        result
+      end
+    end
 end

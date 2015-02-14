@@ -1,5 +1,4 @@
 namespace :gem do
-
   desc 'Generate the gem License from a template'
   task :drop_license do
     require 'erb' # this should be moved out to the Rakefile

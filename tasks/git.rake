@@ -1,5 +1,4 @@
 namespace :git do
-
   desc 'Clone a plugin repo'
   task :clone do
     `git clone #{ PLUGIN_CLONE_ADDRESS }`
@@ -14,5 +13,4 @@ namespace :git do
   task :pull do
     `git pull --rebase #{ PLUGIN_CLONE_ADDRESS }`
   end
-
 end

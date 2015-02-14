@@ -1,5 +1,4 @@
 namespace :config do
-
   desc 'Displays a list of the current global paths'
   task :path do
     printf("%-60s %-60s\n", 'Project Directory', PROJECT_DIR)
@@ -42,10 +41,9 @@ namespace :config do
   end
 end
 
-  desc 'Boilerplater template variables'
-  task :boilerplate do
-
-  end
+desc 'Boilerplater template variables'
+task :boilerplate do
+end
 
 # LICENSE_EMAIL = 'devops@yieldbot.com'
 # GEM_INITIAL_VERSION = '0.0.1.alpha.1'
