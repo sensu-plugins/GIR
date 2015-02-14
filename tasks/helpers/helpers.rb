@@ -28,6 +28,23 @@
 # This is used to check to see if a label exists before creating or deleting
 # it as the api will not exit gracefully if this occurs
 #
+
+def new_version(text, bump)
+  ver = text.match(/\d+\.\d+\.\d+/).to_s.split('.')
+  major = ver[0].to_i
+  minor = ver[1].to_i
+  patch = ver[2].to_i
+  case bump
+  when 'patch'
+    patch += 1
+  when 'minor'
+    minor += 1
+  when 'major'
+    major += 1
+  end
+  return "#{ major }.#{ minor }.#{ patch }"
+end
+
 def acquire_label_list
   set_auth
   set_github_repo_name
