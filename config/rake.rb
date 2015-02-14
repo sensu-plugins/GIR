@@ -140,6 +140,8 @@ GITHUB_WIKI                  = false
 GITHUB_AUTO_INIT             = false
 GITHUB_REPO_DOWNLOADS        = true
 PLUGIN_CLONE_ADDRESS         = "git@github.com:sensu-plugins/sensu-plugins-#{ @plugin_name }.git"
+RELEASE_DRAFT                = ENV['draft'] || false
+RELEASE_PRERELEASE           = ENV['prerelease'] || false
 
 # these labels are used by waffle.io for sorting issues into columns
 STD_PLUGIN_LABELS            = [{ name: 'Investigation Required', color: '5319e7' },

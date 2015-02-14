@@ -35,6 +35,13 @@ namespace :workflow do
     `gem build #{ @gem_root }.gemspec`
   end
 
+  desc 'Deploy a Gem publicly (build, push to Rubygems, create Github release)'
+  task :deploy_gem do
+    Rake::Task['workflow:build_gem'].invoke
+    Rake::Task['workflow:push_gem'].invoke
+    Rake::Task['github:create_release'].invoke
+  end
+
   desc 'Remove a repo'
   task :remove_repo do
     `rm -rf #{ @gem_root }`

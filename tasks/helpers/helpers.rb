@@ -29,6 +29,11 @@
 # it as the api will not exit gracefully if this occurs
 #
 
+def acquire_current_version
+  Dir.chdir(acquire_chdir_path)
+  File.read("lib/#{@gem_root}.rb").match(/\d+\.\d+\.\d+/)
+end
+
 def new_version(text, bump)
   ver = text.match(/\d+\.\d+\.\d+/).to_s.split('.')
   major = ver[0].to_i
