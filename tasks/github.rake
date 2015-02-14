@@ -58,15 +58,13 @@ namespace :github do
     set_auth
     set_github_repo_name
     @github.repos.releases.create GITHUB_ORG, @github_repo, "v#{ acquire_current_version }",
-        tag_name: "v#{ acquire_current_version }",
-        target_commitish: ENV['commit'] || 'master',
-        name: "v#{ acquire_current_version }",
-        body: ENV['description'],
-        draft: RELEASE_DRAFT,
-        prerelease: RELEASE_PRERELEASE
+                                  tag_name: "v#{ acquire_current_version }",
+                                  target_commitish: ENV['commit'] || 'master',
+                                  name: "v#{ acquire_current_version }",
+                                  body: ENV['description'],
+                                  draft: RELEASE_DRAFT,
+                                  prerelease: RELEASE_PRERELEASE
   end
-
-
 
   desc 'Get a list of all plugin repos'
   task :list_repos do

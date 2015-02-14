@@ -47,7 +47,7 @@ def new_version(text, bump)
   when 'major'
     major += 1
   end
-  return "#{ major }.#{ minor }.#{ patch }"
+  "#{ major }.#{ minor }.#{ patch }"
 end
 
 def acquire_label_list
