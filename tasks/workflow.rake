@@ -27,6 +27,7 @@ namespace :workflow do
   task :push_gem do
     Dir.chdir(acquire_chdir_path)
     `gem push *.gem`
+    `rm *.gem`
   end
 
   desc 'Build a gem(requies pvt signing key)'
@@ -36,7 +37,7 @@ namespace :workflow do
   end
 
   desc 'Deploy a Gem publicly (build, push to Rubygems, create Github release)'
-  task :deploy_gem do
+  task :deploy_plugin do
     Rake::Task['workflow:build_gem'].invoke
     Rake::Task['workflow:push_gem'].invoke
     Rake::Task['github:create_release'].invoke
