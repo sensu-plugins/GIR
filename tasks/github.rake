@@ -66,30 +66,98 @@ namespace :github do
                                   prerelease: RELEASE_PRERELEASE
   end
 
+  # I know this is an ugly hack, I will fork the github_api and fix it or do something else when I have time.  This works and is stable so f it for now.
   desc 'Get a list of all plugin repos'
   task :list_repos do
     set_auth
-    printf("%-30s %-30s %-60s\n", 'Name', 'Plugin', 'Description')
+    printf("%-40s %-40s %-70s\n", 'Name', 'Plugin', 'Description')
     p1 = `curl -s 'https://api.github.com/orgs/sensu-plugins/repos?page=1'`
     p2 = `curl -s 'https://api.github.com/orgs/sensu-plugins/repos?page=2'`
+    p3 = `curl -s 'https://api.github.com/orgs/sensu-plugins/repos?page=3'`
+    p4 = `curl -s 'https://api.github.com/orgs/sensu-plugins/repos?page=4'`
+    p5 = `curl -s 'https://api.github.com/orgs/sensu-plugins/repos?page=5'`
+    p6 = `curl -s 'https://api.github.com/orgs/sensu-plugins/repos?page=6'`
+    p7 = `curl -s 'https://api.github.com/orgs/sensu-plugins/repos?page=7'`
+    p8 = `curl -s 'https://api.github.com/orgs/sensu-plugins/repos?page=8'`
+
     p1.each_line do |p|
       if p.include?("\"name\":")
         plugin = p.split("\"")[3].gsub(/sensu-plugins-/, '')
         name = p.split("\"")[3]
-        printf('%-30s %-30s', name, plugin)
+        printf('%-40s %-40s', name, plugin)
       elsif p.include?("\"description\":")
         description = p.split("\"")[3]
-        printf("%-60s\n", description)
+        printf("%-70s\n", description)
       end
     end
     p2.each_line do |p|
       if p.include?("\"name\":")
         plugin = p.split("\"")[3].gsub(/sensu-plugins-/, '')
         name = p.split("\"")[3]
-        printf('%-30s %-30s', name, plugin)
+        printf('%-40s %-40s', name, plugin)
       elsif p.include?("\"description\":")
         description = p.split("\"")[3]
-        printf("%-60s\n", description)
+        printf("%-70s\n", description)
+      end
+    end
+    p3.each_line do |p|
+      if p.include?("\"name\":")
+        plugin = p.split("\"")[3].gsub(/sensu-plugins-/, '')
+        name = p.split("\"")[3]
+        printf('%-40s %-40s', name, plugin)
+      elsif p.include?("\"description\":")
+        description = p.split("\"")[3]
+        printf("%-70s\n", description)
+      end
+    end
+    p4.each_line do |p|
+      if p.include?("\"name\":")
+        plugin = p.split("\"")[3].gsub(/sensu-plugins-/, '')
+        name = p.split("\"")[3]
+        printf('%-40s %-40s', name, plugin)
+      elsif p.include?("\"description\":")
+        description = p.split("\"")[3]
+        printf("%-70s\n", description)
+      end
+    end
+    p5.each_line do |p|
+      if p.include?("\"name\":")
+        plugin = p.split("\"")[3].gsub(/sensu-plugins-/, '')
+        name = p.split("\"")[3]
+        printf('%-40s %-40s', name, plugin)
+      elsif p.include?("\"description\":")
+        description = p.split("\"")[3]
+        printf("%-70s\n", description)
+      end
+    end
+    p6.each_line do |p|
+      if p.include?("\"name\":")
+        plugin = p.split("\"")[3].gsub(/sensu-plugins-/, '')
+        name = p.split("\"")[3]
+        printf('%-40s %-40s', name, plugin)
+      elsif p.include?("\"description\":")
+        description = p.split("\"")[3]
+        printf("%-70s\n", description)
+      end
+    end
+    p7.each_line do |p|
+      if p.include?("\"name\":")
+        plugin = p.split("\"")[3].gsub(/sensu-plugins-/, '')
+        name = p.split("\"")[3]
+        printf('%-40s %-40s', name, plugin)
+      elsif p.include?("\"description\":")
+        description = p.split("\"")[3]
+        printf("%-70s\n", description)
+      end
+    end
+    p8.each_line do |p|
+      if p.include?("\"name\":")
+        plugin = p.split("\"")[3].gsub(/sensu-plugins-/, '')
+        name = p.split("\"")[3]
+        printf('%-40s %-40s', name, plugin)
+      elsif p.include?("\"description\":")
+        description = p.split("\"")[3]
+        printf("%-70s\n", description)
       end
     end
   end
