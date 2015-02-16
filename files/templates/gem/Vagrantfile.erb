@@ -5,9 +5,6 @@ VAGRANTFILE_API_VERSION = '2'
 
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
-  <% VAGRANT_BOX.each do |v| %>
-  config.vm.box '<%= v %>'
-  <% end %>
   config.vm.box = '<%= VAGRANT_BOX %>'
   config.vm.box_download_checksum = <%= DOWNLOAD_CHECKSUM %>
   config.vm.box_download_checksum_type = '<%= CHECKSUM_TYPE %>'
