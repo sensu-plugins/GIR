@@ -53,17 +53,24 @@ namespace :github do
     end
   end
 
+  , :name do |_t, args|
+    # RELEASE_DRAFT                = ENV['draft'] || false
+    # RELEASE_PRERELEASE           = ENV['prerelease'] || false
+
+
+
   desc 'Create a release on Github'
-  task :create_release do
+  task :create_release ,:plugin, :draft, :prerelease do |_t, args| do
     set_auth
-    set_github_repo_name
+    set_github_repo_name(args.repo)
+
     @github.repos.releases.create GITHUB_ORG, @github_repo, "v#{ acquire_current_version }",
                                   tag_name: "v#{ acquire_current_version }",
                                   target_commitish: ENV['commit'] || 'master',
                                   name: "v#{ acquire_current_version }",
                                   body: ENV['description'],
-                                  draft: RELEASE_DRAFT,
-                                  prerelease: RELEASE_PRERELEASE
+                                  draft: args.draft || false,
+                                  prerelease: args.prerelease || false
   end
 
   # I know this is an ugly hack, I will fork the github_api and fix it or do something else when I have time.  This works and is stable so f it for now.
@@ -159,6 +166,54 @@ namespace :github do
         description = p.split("\"")[3]
         printf("%-70s\n", description)
       end
+    end
+  end
+
+  # I know this is an ugly hack, I will fork the github_api and fix it or do something else when I have time.  This works and is stable so f it for now.  This has only been tested when a repo has a single release, if multiple releases it may not work.
+  desc 'List releases for a repo'
+  task :list_releases do
+    plugin_list = []
+    set_auth
+    p1 = `curl -s 'https://api.github.com/orgs/sensu-plugins/repos?page=1'`
+    p2 = `curl -s 'https://api.github.com/orgs/sensu-plugins/repos?page=2'`
+    p3 = `curl -s 'https://api.github.com/orgs/sensu-plugins/repos?page=3'`
+    p4 = `curl -s 'https://api.github.com/orgs/sensu-plugins/repos?page=4'`
+    p5 = `curl -s 'https://api.github.com/orgs/sensu-plugins/repos?page=5'`
+    p6 = `curl -s 'https://api.github.com/orgs/sensu-plugins/repos?page=6'`
+    p7 = `curl -s 'https://api.github.com/orgs/sensu-plugins/repos?page=7'`
+    p8 = `curl -s 'https://api.github.com/orgs/sensu-plugins/repos?page=8'`
+
+    p1.each_line do |p|
+      plugin_list << p.split("\"")[3] if p.include?("\"name\":")
+    end
+    p2.each_line do |p|
+      plugin_list << p.split("\"")[3] if p.include?("\"name\":")
+    end
+    p3.each_line do |p|
+      plugin_list << p.split("\"")[3] if p.include?("\"name\":")
+    end
+    p4.each_line do |p|
+      plugin_list << p.split("\"")[3] if p.include?("\"name\":")
+    end
+    p5.each_line do |p|
+      plugin_list << p.split("\"")[3] if p.include?("\"name\":")
+    end
+    p6.each_line do |p|
+      plugin_list << p.split("\"")[3] if p.include?("\"name\":")
+    end
+    p7.each_line do |p|
+      plugin_list << p.split("\"")[3] if p.include?("\"name\":")
+    end
+    p8.each_line do |p|
+      plugin_list << p.split("\"")[3] if p.include?("\"name\":")
+    end
+
+    printf("%-40s %-40s %-40s\n", 'Name', 'Github Release', 'Gem Release')
+    plugin_list.each do |p|
+      acquire_latest_gem_release(p)
+      rel_ver = @github.repos.releases.list GITHUB_ORG, p
+      r = (rel_ver[0][:name] if !rel_ver.empty?) || 'none'
+      printf("%-40s %-40s %-40s\n", p, r, @g)
     end
   end
 

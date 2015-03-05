@@ -24,16 +24,15 @@
 #   for details.
 #
 
-# Grab the list of all labels currently configured.
-# This is used to check to see if a label exists before creating or deleting
-# it as the api will not exit gracefully if this occurs
+# Get the current version or a plugin
 #
-
 def acquire_current_version
   Dir.chdir(acquire_chdir_path)
-  File.read("lib/#{@gem_root}.rb").match(/\d+\.\d+\.\d+/)
+  File.read("lib/#{@gem_root}.rb").match(/\d+\.\d+\.\d+.*/)
 end
 
+# Set the desired version of the plugin
+#
 def new_version(text, bump)
   ver = text.match(/\d+\.\d+\.\d+/).to_s.split('.')
   major = ver[0].to_i
@@ -50,6 +49,21 @@ def new_version(text, bump)
   "#{ major }.#{ minor }.#{ patch }"
 end
 
+# Get the latest release of a gem from rubygems
+#
+def acquire_latest_gem_release(gem)
+  begin
+    gem_ver = JSON.parse(`curl -s "https://rubygems.org/api/v1/versions/#{ gem }.json"`)
+    @g = gem_ver[0]['number']
+  rescue
+    @g = 'none'
+  end
+end
+
+# Grab the list of all labels currently configured.
+# This is used to check to see if a label exists before creating or deleting
+# it as the api will not exit gracefully if this occurs
+#
 def acquire_label_list
   set_auth
   set_github_repo_name
@@ -73,6 +87,8 @@ def acquire_repo_list
   end
 end
 
+# Get a list of all milestones
+#
 def acquire_ms_list
   set_auth
   set_github_repo_name
@@ -91,14 +107,20 @@ def set_auth
   end
 end
 
-def set_github_repo_name
-  @github_repo = "sensu-plugins-#{ @plugin_name }"
+# Create the repo name based upon the plugin
+#
+def set_github_repo_name(plugin)
+  @github_repo = "sensu-plugins-#{ plugin }"
 end
 
+# Get the template to build
+#
 def get_template(input)
   File.read(input)
 end
 
+# Set the proper path for the plugin repo
+#
 def acquire_chdir_path
   @plugin_dir.nil? ? PLUGINS_DIR : @plugin_dir
 end
