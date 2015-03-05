@@ -26,6 +26,7 @@
 
 require 'benchmark'
 require 'github_api'
+require 'travis'
 # require 'erb'
 
 # Load our rake configuration
