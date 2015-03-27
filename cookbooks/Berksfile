@@ -1,0 +1,9 @@
+source "https://supermarket.chef.io"
+
+cookbook 'git', '~> 4.1.0'
+cookbook 'yum', '~> 3.5.3'
+cookbook 'yum-epel', '~> 0.6.0'
+cookbook 'yum-centos', '~> 0.4.0'
+cookbook 'yum-repoforge', '~> 0.5.0'
+cookbook 'vim', '~> 1.1.2'
+cookbook 'mlocate', '~> 0.3.2'
