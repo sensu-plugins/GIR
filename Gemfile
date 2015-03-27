@@ -6,3 +6,4 @@ gem 'pry'
 
 # GIR v2 (Chef)
 gem 'chef'
+gem 'json'

@@ -1,0 +1,32 @@
+{
+    "config": {
+        "cent5": {
+            "box": "chef/centos-5.11",
+            "role_path": "../GIR/roles",
+            "role": [
+                "cent_base"
+            ]
+        },
+        "cent6": {
+            "box": "chef/centos-6.6",
+            "role_path": "../GIR/roles",
+            "role": [
+                "cent_base"
+            ]
+        },
+        "cent7": {
+            "box": "chef/centos-7.0",
+            "role_path": "../GIR/roles",
+            "role": [
+                "cent_base"
+            ]
+        },
+        "ubuntu14": {
+            "box": "chef/ubuntu-14.04",
+            "role_path": "../GIR/roles",
+            "role": [
+                "ubuntu_base"
+            ]
+        }
+    }
+}

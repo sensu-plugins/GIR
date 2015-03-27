@@ -19,12 +19,6 @@ yum_package 'bc' do
   action :install
 end
 
-yum_package 'bind-utils' do
-  version '9.8.2-0.30.rc1.el6_6.1'
-  allow_downgrade true
-  action :install
-end
-
 yum_package 'dmidecode' do
   version '2.12-5.el6_5'
   allow_downgrade true
@@ -43,18 +37,6 @@ yum_package 'git' do
   action :install
 end
 
-yum_package 'htop' do
-  version '1.0.1-2.el6'
-  allow_downgrade true
-  action :install
-end
-
-yum_package 'iftop' do
-  version '1.0-0.7.pre4.el6'
-  allow_downgrade true
-  action :install
-end
-
 yum_package 'lsof' do
   version '4.82-4.el6'
   allow_downgrade true
@@ -69,12 +51,6 @@ end
 
 yum_package 'mlocate' do
   version '0.22.2-4.el6'
-  allow_downgrade true
-  action :install
-end
-
-yum_package 'multitail' do
-  version '6.2.1-1.el6'
   allow_downgrade true
   action :install
 end
@@ -103,19 +79,13 @@ yum_package 'telnet' do
   action :install
 end
 
-yum_package 'tmux' do
-  version '1.6-3.el6'
-  allow_downgrade true
-  action :install
-end
-
 yum_package 'traceroute' do
   version '2.0.14-2.el6'
   allow_downgrade true
   action :install
 end
 
-yum_package 'vim' do
+yum_package 'vim-enhanced' do
   version '7.2.411-1.8.el6'
   allow_downgrade true
   action :install
