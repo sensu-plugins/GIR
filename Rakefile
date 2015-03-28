@@ -1,6 +1,5 @@
 # Rakefile
 #
-#
 # DESCRIPTION:
 #   Create a rake environment for working with the sensu plugins
 #
@@ -26,7 +25,6 @@
 
 require 'benchmark'
 require 'github_api'
-# require 'erb'
 
 # Load our rake configuration
 require File.expand_path('../GIR/config/rake', __FILE__)
