@@ -1,0 +1,7 @@
+name             'cookbooks/sensu-plugins'
+maintainer       'YOUR_NAME'
+maintainer_email 'YOUR_EMAIL'
+license          'All rights reserved'
+description      'Installs/Configures cookbooks/sensu-plugins'
+long_description 'Installs/Configures cookbooks/sensu-plugins'
+version          '0.1.0'
