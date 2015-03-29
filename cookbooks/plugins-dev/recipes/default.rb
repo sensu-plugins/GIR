@@ -2,7 +2,7 @@
 # Cookbook Name:: plugins-dev
 # Recipe:: default
 #
-# Copyright 2015, YOUR_COMPANY_NAME
+# Copyright 2015, sensu-plugins
 #
 # All rights reserved - Do Not Redistribute
 #
@@ -20,4 +20,10 @@ when 'centos5.11'
   include_recipe 'plugins-dev::_cent5_packages'
 when 'ubuntu14'
   include_recipe 'plugins-dev::_ubuntu14_packages'
+when 'freebsd9.2-RELEASE'
+  include_recipe 'plugins-dev::_bsd_packages'
+when 'freebsd10.0-RELEASE'
+  include_recipe 'plugins-dev::_bsd_packages'
 end
+
+include_recipe 'plugins-dev::_development_gems'
