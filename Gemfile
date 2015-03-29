@@ -5,5 +5,5 @@ gem 'rubocop'
 gem 'pry'
 
 # GIR v2 (Chef)
-gem 'chef'
+# gem 'chef'
 gem 'json'
