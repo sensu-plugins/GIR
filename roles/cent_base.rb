@@ -4,7 +4,7 @@ run_list 'recipe[yum]',
          'recipe[yum-epel]',
          'recipe[yum-centos]',
          'recipe[yum-repoforge]',
-         'recipe[plugins-dev]'
+         'recipe[plugins_dev]'
 
 default_attributes(
  "chruby" => {

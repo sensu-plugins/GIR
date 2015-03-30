@@ -19,4 +19,4 @@ cookbook 'ruby_build', '~> 0.8.0'
 cookbook 'build-essential'
 
 # Local
-cookbook 'plugins-dev', path: '../GIR/cookbooks/plugins-dev'
+cookbook 'plugins_dev', path: '../GIR/cookbooks/plugins_dev'
