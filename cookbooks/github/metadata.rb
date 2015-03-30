@@ -1,7 +1,0 @@
-name             'cookbooks/github'
-maintainer       'YOUR_NAME'
-maintainer_email 'YOUR_EMAIL'
-license          'All rights reserved'
-description      'Installs/Configures cookbooks/github'
-long_description 'Installs/Configures cookbooks/github'
-version          '0.1.0'

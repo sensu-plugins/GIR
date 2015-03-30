@@ -7,23 +7,34 @@
 # All rights reserved - Do Not Redistribute
 #
 
-platform = "#{ node['platform'] }#{ node['platform_version'] }"
-puts node['platform']
-puts node['platform_version']
+package 'git' do
+  action :install
+end
 
-case platform
-when 'centos6.6'
-  include_recipe 'plugins-dev::_cent6_packages'
-when 'centos7.0.1406'
-  include_recipe 'plugins-dev::_cent7_packages'
-when 'centos5.11'
-  include_recipe 'plugins-dev::_cent5_packages'
-when 'ubuntu14'
-  include_recipe 'plugins-dev::_ubuntu14_packages'
-when 'freebsd9.2-RELEASE'
-  include_recipe 'plugins-dev::_bsd_packages'
-when 'freebsd10.0-RELEASE'
+package 'nano' do
+  action :install
+end
+
+package 'wget' do
+  action :install
+end
+
+case node['platform']
+when 'centos'
+  include_recipe 'plugins-dev::_cent_packages'
+when 'ubuntu'
+  include_recipe 'plugins-dev::_ubuntu_packages'
+when 'freebsd'
   include_recipe 'plugins-dev::_bsd_packages'
 end
 
-include_recipe 'plugins-dev::_development_gems'
+# Install chruby to manage ruby versions
+include_recipe 'chruby::default' unless node['platform'] == 'freebsd'
+
+# Install or remove additional rubys
+# These should be set in the plugin's Vagrantfile
+# To push a new version to every plugin repo set it at the role level
+include_recipe 'chruby::system' unless node['platform'] == 'freebsd'
+
+# Install any gems into the default ruby as set by chruby
+include_recipe 'plugins-dev::_development_gems' unless node['platform'] == 'freebsd'
