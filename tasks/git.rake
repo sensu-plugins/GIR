@@ -6,7 +6,11 @@ namespace :git do
       puts 'A plugin must be provided'
       exit
     end
-    `git clone #{ plugin_url(args.plugin) }`
+    # convert plugin to an array by default
+    plugins = args.plugin.split(' ')
+    plugins.each do |p|
+      `git clone #{ local_plugin_repo(p) }`
+    end
   end
 
   desc 'Fetch a plugin repo'
@@ -15,7 +19,11 @@ namespace :git do
       puts 'A plugin must be provided'
       exit
     end
-    `git fetch #{ plugin_url(args.plugin) }`
+    # convert plugin to an array by default
+    plugins = args.plugin.split(' ')
+    plugins.each do |p|
+      `git fetch #{ local_plugin_repo(p) }`
+    end
   end
 
   desc 'Pull and rebase a plugin repo'
@@ -24,6 +32,10 @@ namespace :git do
       puts 'A plugin must be provided'
       exit
     end
-    `git pull --rebase #{ plugin_url(args.plugin) }`
+    # convert plugin to an array by default
+    plugins = args.plugin.split(' ')
+    plugins.each do |p|
+      puts `git pull --rebase #{ local_plugin_repo(p) }`
+    end
   end
 end
