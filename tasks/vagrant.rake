@@ -15,7 +15,7 @@ namespace :vagrant do
     task remove.to_sym do; end
     Dir.chdir(acquire_chdir_path) do
       puts acquire_chdir_path
-      run_command('vagrant destroy --force')
+      run_command('vagrant destroy')
       rm_r(acquire_chdir_path) if remove == 'remove'
     end
   end
