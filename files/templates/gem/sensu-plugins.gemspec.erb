@@ -3,7 +3,6 @@ $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 <% GEMSPEC_REQUIREMENTS.each do |r| %>
 require '<%= r %>'
 <% end %>
-
 if RUBY_VERSION < '2.0.0'
   require '<%= @gem_root %>'
 else
@@ -13,24 +12,29 @@ end
 pvt_key = '<%= PVT_KEY %>'
 
 Gem::Specification.new do |s|
-  s.name                   = '<%= @gem_root %>'
-  s.version                = <%= @gem_class %>::VERSION
   s.authors                = <%= GEM_AUTHOR %>
-  s.email                  = '<%= GEM_EMAIL %>'
-  s.homepage               = 'https://github.com/sensu-plugins/<%= @gem_root %>'
-  s.summary                = ''
-  s.description            = ''
-  s.license                = '<%= GEM_LICENSE %>'
-  s.date                   = Date.today.to_s
-  s.files                  = Dir.glob('{bin,lib}/**/*') + %w(LICENSE README.md CHANGELOG.md)
-  s.executables            = s.files.grep(%r{^bin/}) { |f| File.basename(f) }
-  s.test_files             = s.files.grep(%r{^(test|spec|features)/})
-  s.require_paths          = <%= GEM_REQUIRE_PATHS %>
   s.cert_chain             = <%= GEM_CERT_CHAIN %>
-  s.signing_key            = File.expand_path(pvt_key) if $PROGRAM_NAME =~ /gem\z/
-  s.platform               = <%= GEM_PLATFORM %>
+  s.date                   = Date.today.to_s
+  s.description            = ''
+  s.email                  = '<%= GEM_EMAIL %>'
+  s.executables            = s.files.grep(%r{^bin/}) { |f| File.basename(f) }
+  s.files                  = Dir.glob('{bin,lib}/**/*') + %w(LICENSE README.md CHANGELOG.md)
+  s.homepage               = 'https://github.com/sensu-plugins/<%= @gem_root %>'
+  s.license                = '<%= GEM_LICENSE %>'
+  s.metadata               = { 'maintainer'         => '',
+                               'development_status' => 'active',
+                               'production_status'  => 'unstable - testing recommended'
+  }
+  s.name                   = '<%= @gem_root %>'
+  s.platform               = Gem::Platform::RUBY
+  s.require_paths          = <%= GEM_REQUIRE_PATHS %>
   s.required_ruby_version  = '<%= REQUIRED_RUBY_VERSION %>'
+  s.signing_key            = File.expand_path(pvt_key) if $PROGRAM_NAME =~ /gem\z/
+  s.summary                = ''
+  s.test_files             = s.files.grep(%r{^(test|spec|features)/})
+  s.version                = <%= @gem_class %>::Version::VER_STRING
 
+  s.add_runtime_dependency 'sensu-plugin', '1.1.0'
   <% DEV_DEPENDENCIES.each do |d| %>
   s.add_development_dependency '<%= d[:name] %>', '<%= d[:version] %>'
   <% end %>
