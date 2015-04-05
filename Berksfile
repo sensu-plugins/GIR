@@ -1,4 +1,4 @@
-source "https://supermarket.chef.io"
+source 'https://supermarket.chef.io'
 
 # CentOS
 cookbook 'yum', '~> 3.5.3'
