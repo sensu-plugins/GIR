@@ -1,34 +1,9 @@
 #! /usr/bin/env ruby
-#
-# helpers
-#
-#
-# DESCRIPTION:
-#   Helpers for sensu-plugins rake tasks
-#
-# OUTPUT:
-#   N/A
-#
-# PLATFORMS:
-#   all
-#
-# DEPENDENCIES:
-#
-# USAGE:
-#
-# NOTES:
-#
-# LICENSE:
-#   Copyright 2015 Yieldbot, Inc  <devops@yieldbot.com>
-#   Released under the same terms as Sensu (the MIT license); see LICENSE
-#   for details.
-#
 
 # Grab the list of all labels currently configured.
 # This is used to check to see if a label exists before creating or deleting
-# it as the api will not exit gracefully if this occurs
+# it.
 #
-
 def acquire_current_version
   Dir.chdir(acquire_chdir_path)
   File.read("lib/#{@gem_root}.rb").match(/\d+\.\d+\.\d+/)
