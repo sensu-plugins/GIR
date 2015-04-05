@@ -1,5 +1,5 @@
 #
-# Cookbook Name:: plugins-dev
+# Cookbook Name:: plugins_dev
 # Recipe:: default
 #
 # Copyright 2015, sensu-plugins
