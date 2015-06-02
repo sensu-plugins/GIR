@@ -1,34 +1,8 @@
-#! /usr/bin/env ruby
-#
-# rake
-#
-#
-# DESCRIPTION:
-#   configuration information for thr rake tasks
-#
-# OUTPUT:
-#   N/A
-#
-# PLATFORMS:
-#   all
-#
-# DEPENDENCIES:
-#
-# USAGE:
-#
-# NOTES:
-#
-# LICENSE:
-#   Copyright 2015 Yieldbot, Inc  <devops@yieldbot.com>
-#   Released under the same terms as Sensu (the MIT license); see LICENSE
-#   for details.
-#
-
 # Disable echoing of sh commands (sh command output will still be displayed)
 RakeFileUtils.verbose_flag = false
 
 TOPDIR = File.expand_path(File.join(File.dirname(__FILE__), '..'))
-PROJECT_DIR = File.expand_path(File.join(File.dirname(__FILE__), '../..'))
+PROJECT_ROOT = File.expand_path(File.join(File.dirname(__FILE__), '../..'))
 
 # Store your github token with the proper permissions in a file, this should
 # allow you to avoid having to worry about hardcoding it or forgeting it
@@ -48,7 +22,7 @@ end
 # Static locations
 TEMPLATE_DIR     = File.join(TOPDIR, 'files/templates')
 STATIC_DIR       = File.join(TOPDIR, 'files/static')
-PLUGINS_DIR      = File.join(PROJECT_DIR, 'sensu-plugins-')
+PLUGINS_DIR      = File.join(PROJECT_ROOT, 'sensu-plugins-')
 GEM_TEMPLATE_DIR = File.join(TEMPLATE_DIR, 'gem')
 GEM_STATIC_DIR   = File.join(STATIC_DIR, 'gem')
 
@@ -71,7 +45,8 @@ GEM_INITIAL_VERSION = '0.0.1.alpha.1'
 DEVELOPMENT_SITE = 'http://sensu-plugins.github.io/development/'
 
 # LICENSE.erb
-LICENSE_EMAIL = 'devops@yieldbot.com'
+LICENSE_EMAIL = 'sensu-plugin@sensu-plugins.io'
+LICENSE_USER = 'Sensu Plugins'
 
 # Rakefile.erb
 RAKEFILE_REQUIREMENTS = ['bundler/gem_tasks', 'rspec/core/rake_task', 'yard',
@@ -84,9 +59,11 @@ COPS = [{ name: 'MethodLength', value: 'Max: 200' },
         { name: 'FileName', value: 'Enabled: false' },
         { name: 'PerceivedComplexity', value: 'Enabled: false' },
         { name: 'CyclomaticComplexity', value: 'Enabled: false' },
-        {  name: 'ClassLength', value: 'Enabled: false' },
+        { name: 'ClassLength', value: 'Enabled: false' },
         { name: 'IfUnlessModifier', value: 'Enabled: false' },
-        { name: 'RegexpLiteral', value: 'Enabled: false' }]
+        { name: 'RegexpLiteral', value: 'Enabled: false' },
+        { name: 'AbcSize', value: 'Max: 75' },
+        { name: 'Documentation', value: 'Enabled: false' }]
 
 # Gem version module
 
@@ -94,24 +71,22 @@ COPS = [{ name: 'MethodLength', value: 'Max: 200' },
 GEMSPEC_REQUIREMENTS   = ['date']
 PVT_KEY                = '~/.ssh/gem-private_key.pem'
 REQUIRED_RUBY_VERSION  = '>= 1.9.3'
-GEM_AUTHOR             = ['Yieldbot, Inc. and contributors']
+GEM_AUTHOR             = ['Sensu Plugins and contributors']
 GEM_EMAIL              = '<sensu-users@googlegroups.com>'
 GEM_LICENSE            = 'MIT'
 GEM_REQUIRE_PATHS      = ['lib']
 GEM_CERT_CHAIN         = ['certs/sensu-plugins.pem']
-GEM_PLATFORM           = 'Gem::Platform::RUBY'
-DEV_DEPENDENCIES       = [{ name: 'codeclimate-test-reporter', version: 'XXX' },
-                          { name: 'rubocop',                   version: '~> 0.17.0' },
+DEV_DEPENDENCIES       = [{ name: 'codeclimate-test-reporter', version: '~> 0.4' },
+                          { name: 'rubocop',                   version: '~> 0.30' },
                           { name: 'rspec',                     version: '~> 3.1' },
                           { name: 'bundler',                   version: '~> 1.7' },
                           { name: 'rake',                      version: '~> 10.0' },
-                          { name: 'github-markup',             version: 'XXX' },
-                          { name: 'redcarpet',                 version: 'XXX' },
-                          { name: 'yard',                      version: 'XXX' },
-                          { name: 'pry',                       version: 'XXX' }]
+                          { name: 'github-markup',             version: '~> 1.3' },
+                          { name: 'redcarpet',                 version: '~> 3.2' },
+                          { name: 'yard',                      version: '~> 0.8' },
+                          { name: 'pry',                       version: '~> 0.10' }]
 
-# travis.yml.erb
-TRAVIS_EMAIL = 'mattjones@yieldbot.com'
+TRAVIS_EMAIL = 'sensu-plugin@sensu-plugin.io'
 
 # vagrantfile.erb
 VAGRANT_BOX_NAME   = 'sensu-plugins-dev'
@@ -139,7 +114,7 @@ GITHUB_ISSUES                = true
 GITHUB_WIKI                  = false
 GITHUB_AUTO_INIT             = false
 GITHUB_REPO_DOWNLOADS        = true
-PLUGIN_CLONE_ADDRESS         = "git@github.com:sensu-plugins/sensu-plugins-#{ @plugin_name }.git"
+# PLUGIN_CLONE_ADDRESS         = "git@github.com:sensu-plugins/sensu-plugins-#{ @plugin_name }.git"
 RELEASE_DRAFT                = ENV['draft'] || false
 RELEASE_PRERELEASE           = ENV['prerelease'] || false
 

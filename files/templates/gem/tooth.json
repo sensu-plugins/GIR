@@ -1,7 +1,0 @@
-{
-  "coordinates": {
-    "org": "com.yieldbot.devops",
-    "name": "<%= @gem_root %>",
-    "type": "gem"
-  }
-}

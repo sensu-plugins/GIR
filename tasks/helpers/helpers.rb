@@ -4,27 +4,6 @@
 # This is used to check to see if a label exists before creating or deleting
 # it.
 #
-def acquire_current_version
-  Dir.chdir(acquire_chdir_path)
-  File.read("lib/#{@gem_root}.rb").match(/\d+\.\d+\.\d+/)
-end
-
-def new_version(text, bump)
-  ver = text.match(/\d+\.\d+\.\d+/).to_s.split('.')
-  major = ver[0].to_i
-  minor = ver[1].to_i
-  patch = ver[2].to_i
-  case bump
-  when 'patch'
-    patch += 1
-  when 'minor'
-    minor += 1
-  when 'major'
-    major += 1
-  end
-  "#{ major }.#{ minor }.#{ patch }"
-end
-
 def acquire_label_list
   set_auth
   set_github_repo_name
@@ -48,6 +27,8 @@ def acquire_repo_list
   end
 end
 
+# Grab the list of all milestones currently configured.
+#
 def acquire_ms_list
   set_auth
   set_github_repo_name

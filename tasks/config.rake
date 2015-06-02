@@ -1,7 +1,7 @@
 namespace :config do
   desc 'Displays a list of the current global paths'
   task :path do
-    printf("%-60s %-60s\n", 'Project Directory', PROJECT_DIR)
+    printf("%-60s %-60s\n", 'Project Directory', PROJECT_ROOT)
     printf("%-60s %-60s\n", 'ERB Template Directory', TEMPLATE_DIR)
     printf("%-60s %-60s\n", 'Static File Directory', STATIC_DIR)
     printf("%-60s %-60s\n", 'Plugins Directory', PLUGINS_DIR)
@@ -45,5 +45,5 @@ desc 'Boilerplater template variables'
 task :boilerplate do
 end
 
-# LICENSE_EMAIL = 'devops@yieldbot.com'
+# LICENSE_EMAIL = 'Sensu-Plugins'
 # GEM_INITIAL_VERSION = '0.0.1.alpha.1'

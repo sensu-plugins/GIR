@@ -16,41 +16,6 @@
 
 ## Usage
 
-## Installation
-
-Add the public key (if you haven’t already) as a trusted certificate
-
-```
-gem cert --add <(curl -Ls <%= PUBLIC_KEY %>)
-gem install <%= @gem_root %> -P MediumSecurity
-```
-
-You can also download the key from /certs/ within each repository.
-
-#### Rubygems
-
-`gem install <%= @gem_root %>`
-
-#### Bundler
-
-Add *sensu-plugins-<%= @gem_root %>* to your Gemfile and run `bundle install` or `bundle update`
-
-#### Chef
-
-Using the Sensu **sensu_gem** LWRP
-```
-sensu_gem '<%= @gem_root %>' do
-  options('--prerelease')
-  version '0.0.1'
-end
-```
-
-Using the Chef **gem_package** resource
-```
-gem_package '<%= @gem_root %>' do
-  options('--prerelease')
-  version '0.0.1'
-end
-```
+[Installation and Setup](https://github.com/sensu-plugins/documentation/blob/master/user_docs/installation_instructions.md)
 
 ## Notes

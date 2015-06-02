@@ -1,9 +1,12 @@
 namespace :vagrant do
   desc 'Destroy VM will also delete the repo from the local machine if \'remove\' is passed to the task'
-  task :destroy do
-    remove = ARGV.last
-    task remove.to_sym do; end
-    Dir.chdir(acquire_chdir_path) do
+  task :destroy, :plugin, :remove do |_t, args|
+    if args.plugin.nil?
+      puts 'A plugin must be provided'
+      exit
+    end
+    remove = true if args.remove == 'remove'
+    Dir.chdir(File.join("#{ PROJECT_ROOT }, /sensu-plugins-#{ p }")) do
       run_command('vagrant destroy --force')
       rm_r(acquire_chdir_path) if remove == 'remove'
     end

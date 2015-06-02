@@ -1,28 +1,3 @@
-#! /usr/bin/env ruby
-#
-# github.rake
-#
-# DESCRIPTION:
-#   These are designed to create and work with Github repos
-#
-# OUTPUT:
-#   N/A
-#
-# PLATFORMS:
-#   all
-#
-# DEPENDENCIES:
-#
-# USAGE:
-#
-# NOTES:
-#
-# LICENSE:
-#   Copyright 2015 Yieldbot, Inc  <devops@yieldbot.com>
-#   Released under the same terms as Sensu (the MIT license); see LICENSE
-#   for details.
-#
-
 namespace :github do
   desc 'Create a specific set of labels that are mapped to waffle.io'
   task :create_sensu_plugins_labels do

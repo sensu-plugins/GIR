@@ -4,7 +4,7 @@ GIR is how developers can get things accomplished quickly, simply, and efficient
 
 ### Initial Setup
 
-Create a directory called sensu-plugins and clone this repo and any others you will to work on into it, this will be the **PROJECT_DIRECTORY**.  Now copy the *Rakefile* from GIR to the project root.  You should have something like this:
+Create a directory called sensu-plugins and clone this repo and any others you will to work on into it, this will be the **PROJECT_ROOT**.  Now copy the *Rakefile* from GIR to the project root.  You should have something like this:
 
 /
 
