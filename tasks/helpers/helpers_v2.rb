@@ -5,7 +5,7 @@
 # @return [string] the plugin url
 #
 def plugin_url(plugin)
-  ['git@github.com:sensu-plugins/sensu-plugins-', plugin, '.git'].compact.join('')
+  ['git@github.com:sensu-plugins/', plugin, '.git'].compact.join('')
 end
 
 # Get the path to the local repo of a plugin

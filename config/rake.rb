@@ -77,7 +77,7 @@ GEM_LICENSE            = 'MIT'
 GEM_REQUIRE_PATHS      = ['lib']
 GEM_CERT_CHAIN         = ['certs/sensu-plugins.pem']
 DEV_DEPENDENCIES       = [{ name: 'codeclimate-test-reporter', version: '~> 0.4' },
-                          { name: 'rubocop',                   version: '~> 0.30' },
+                          { name: 'rubocop',                   version: '0.30' },
                           { name: 'rspec',                     version: '~> 3.1' },
                           { name: 'bundler',                   version: '~> 1.7' },
                           { name: 'rake',                      version: '~> 10.0' },

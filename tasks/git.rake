@@ -87,6 +87,7 @@ namespace :git do
     end
     message = args.message || 'update_repo'
     Dir.chdir(local_plugin_repo(p)) do
+      puts `rubocop -a `
       `git add --all`
       `git commit -m "{ message }"`
       puts `git pull --rebase`
@@ -133,6 +134,7 @@ namespace :git do
     end
     args.plugin.split(' ').each do |p|
       Dir.chdir(local_plugin_repo(p)) do
+        `rubocop -a `
         `git add --all`
         `git commit -m 'deploy'`
         puts `git pull --rebase`
