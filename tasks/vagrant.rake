@@ -6,7 +6,7 @@ namespace :vagrant do
       exit
     end
     remove = true if args.remove == 'remove'
-    Dir.chdir(File.join("#{ PROJECT_ROOT }, /sensu-plugins-#{ p }")) do
+    Dir.chdir(File.join("#{PROJECT_ROOT}, /sensu-plugins-#{p}")) do
       run_command('vagrant destroy --force')
       rm_r(acquire_chdir_path) if remove == 'remove'
     end

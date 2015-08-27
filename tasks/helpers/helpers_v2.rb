@@ -15,7 +15,7 @@ end
 # @return [string] the absolute local plugin repo path
 #
 def local_plugin_repo(plugin)
-  File.join("#{ PROJECT_ROOT }", "sensu-plugins-#{ plugin }")
+  File.join("#{PROJECT_ROOT}", "sensu-plugins-#{plugin}")
 end
 
 # Grab the list of all repos in an org.

@@ -28,7 +28,7 @@ GEM_STATIC_DIR   = File.join(STATIC_DIR, 'gem')
 
 # User generated locations
 @plugin_name     = ENV['plugin'] || nil
-@gem_root        = "sensu-plugins-#{ ENV['plugin']}" || nil
+@gem_root        = "sensu-plugins-#{ENV['plugin']}" || nil
 @plugin_dir      = @plugin_name.nil? ? nil : PLUGINS_DIR << @plugin_name
 @gem_class       = @gem_root.split('-').map(&:capitalize).join
 
@@ -62,7 +62,7 @@ COPS = [{ name: 'MethodLength', value: 'Max: 200' },
         { name: 'ClassLength', value: 'Enabled: false' },
         { name: 'IfUnlessModifier', value: 'Enabled: false' },
         { name: 'RegexpLiteral', value: 'Enabled: false' },
-        { name: 'AbcSize', value: 'Max: 75' },
+        { name: 'AbcSize', value: 'Max: 100' },
         { name: 'Documentation', value: 'Enabled: false' }]
 
 # Gem version module
@@ -125,13 +125,13 @@ STD_PLUGIN_LABELS            = [{ name: 'Investigation Required', color: '5319e7
                                 # { name: 'Developer Feedback Requested', color: 'c7def8' },
                                 { name: 'Needs Review', color: '005200' },
                                 { name: 'Bug', color: 'fc2929' }]
-                                # { name: 'Enhancement', color: '84b6eb' }]
+# { name: 'Enhancement', color: '84b6eb' }]
 # { name: 'Help Wanted', color: '159818' }]
 
 # these labels are ones we don't push to waffle.io
 GITHUB_REMOVABLE_STD_LABELS  = ['duplicate' 'invalid' 'wontfix' 'question' 'enhancement' 'bug']
-GITHUB_REMOVABLE_STD_LABELS << "Developer Feedback Requested"
-GITHUB_REMOVABLE_STD_LABELS << "Community Feedback Requested"
-GITHUB_REMOVABLE_STD_LABELS << "Enhancement"
-GITHUB_REMOVABLE_STD_LABELS << "Refactor"
-GITHUB_REMOVABLE_STD_LABELS << "help wanted"
+GITHUB_REMOVABLE_STD_LABELS << 'Developer Feedback Requested'
+GITHUB_REMOVABLE_STD_LABELS << 'Community Feedback Requested'
+GITHUB_REMOVABLE_STD_LABELS << 'Enhancement'
+GITHUB_REMOVABLE_STD_LABELS << 'Refactor'
+GITHUB_REMOVABLE_STD_LABELS << 'help wanted'

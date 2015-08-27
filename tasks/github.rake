@@ -32,10 +32,10 @@ namespace :github do
   task :create_release do
     set_auth
     set_github_repo_name
-    @github.repos.releases.create GITHUB_ORG, @github_repo, "v#{ acquire_current_version }",
-                                  tag_name: "v#{ acquire_current_version }",
+    @github.repos.releases.create GITHUB_ORG, @github_repo, "v#{acquire_current_version}",
+                                  tag_name: "v#{acquire_current_version}",
                                   target_commitish: ENV['commit'] || 'master',
-                                  name: "v#{ acquire_current_version }",
+                                  name: "v#{acquire_current_version}",
                                   body: ENV['description'],
                                   draft: RELEASE_DRAFT,
                                   prerelease: RELEASE_PRERELEASE

@@ -4,7 +4,7 @@ namespace :gem do
     require 'erb' # this should be moved out to the Rakefile
     template_file = File.join(GEM_TEMPLATE_DIR, 'LICENSE.erb')
 
-    File.open(File.join(PROJECT_ROOT, "#{ @gem_root }/LICENSE"), 'w+') do |f|
+    File.open(File.join(PROJECT_ROOT, "#{@gem_root}/LICENSE"), 'w+') do |f|
       f.write(ERB.new(get_template(template_file)).result)
     end
   end
@@ -14,7 +14,7 @@ namespace :gem do
     require 'erb' # this should be moved out to the Rakefile
     template_file = File.join(GEM_TEMPLATE_DIR, 'version.rb.erb')
 
-    File.open(File.join(PROJECT_ROOT, "#{ @gem_root }/lib/#{ @gem_root }.rb"), 'w+') do |f|
+    File.open(File.join(PROJECT_ROOT, "#{@gem_root}/lib/#{@gem_root}.rb"), 'w+') do |f|
       f.write(ERB.new(get_template(template_file)).result)
     end
   end
@@ -24,7 +24,7 @@ namespace :gem do
     require 'erb' # this should be moved out to the Rakefile
     template_file = File.join(GEM_TEMPLATE_DIR, 'CHANGELOG.md.erb')
 
-    File.open(File.join(PROJECT_ROOT, "#{ @gem_root }/CHANGELOG.md"), 'w+') do |f|
+    File.open(File.join(PROJECT_ROOT, "#{@gem_root}/CHANGELOG.md"), 'w+') do |f|
       f.write(ERB.new(get_template(template_file)).result)
     end
   end
@@ -34,7 +34,7 @@ namespace :gem do
     require 'erb' # this should be moved out to the Rakefile
     template_file = File.join(GEM_TEMPLATE_DIR, 'CONTRIBUTING.md.erb')
 
-    File.open(File.join(PROJECT_ROOT, "#{ @gem_root }/CONTRIBUTING.md"), 'w+') do |f|
+    File.open(File.join(PROJECT_ROOT, "#{@gem_root}/CONTRIBUTING.md"), 'w+') do |f|
       f.write(ERB.new(get_template(template_file)).result)
     end
   end
@@ -44,7 +44,7 @@ namespace :gem do
     require 'erb' # this should be moved out to the Rakefile
     template_file = File.join(GEM_TEMPLATE_DIR, 'README.md.erb')
 
-    File.open(File.join(PROJECT_ROOT, "#{ @gem_root }/README.md"), 'w+') do |f|
+    File.open(File.join(PROJECT_ROOT, "#{@gem_root}/README.md"), 'w+') do |f|
       f.write(ERB.new(get_template(template_file)).result)
     end
   end
@@ -54,7 +54,7 @@ namespace :gem do
     require 'erb' # this should be moved out to the Rakefile
     template_file = File.join(GEM_TEMPLATE_DIR, 'sensu-plugins.gemspec.erb')
 
-    File.open(File.join(PROJECT_ROOT, "#{ @gem_root }/#{ @gem_root }.gemspec"), 'w+') do |f|
+    File.open(File.join(PROJECT_ROOT, "#{@gem_root}/#{@gem_root}.gemspec"), 'w+') do |f|
       f.write(ERB.new(get_template(template_file)).result)
     end
   end
@@ -64,7 +64,7 @@ namespace :gem do
     require 'erb' # this should be moved out to the Rakefile
     template_file = File.join(GEM_TEMPLATE_DIR, 'Vagrantfile.erb')
 
-    File.open(File.join(PROJECT_ROOT, "#{ @gem_root }/Vagrantfile"), 'w+') do |f|
+    File.open(File.join(PROJECT_ROOT, "#{@gem_root}/Vagrantfile"), 'w+') do |f|
       f.write(ERB.new(get_template(template_file)).result)
     end
   end
@@ -74,7 +74,7 @@ namespace :gem do
     require 'erb' # this should be moved out to the Rakefile
     template_file = File.join(GEM_TEMPLATE_DIR, 'Rakefile.erb')
 
-    File.open(File.join(PROJECT_ROOT, "#{ @gem_root }/Rakefile"), 'w+') do |f|
+    File.open(File.join(PROJECT_ROOT, "#{@gem_root}/Rakefile"), 'w+') do |f|
       f.write(ERB.new(get_template(template_file)).result)
     end
   end
@@ -84,7 +84,7 @@ namespace :gem do
     require 'erb' # this should be moved out to the Rakefile
     template_file = File.join(GEM_TEMPLATE_DIR, 'rubocop.yml.erb')
 
-    File.open(File.join(PROJECT_ROOT, "#{ @gem_root }/.rubocop.yml"), 'w+') do |f|
+    File.open(File.join(PROJECT_ROOT, "#{@gem_root}/.rubocop.yml"), 'w+') do |f|
       f.write(ERB.new(get_template(template_file)).result)
     end
   end
@@ -94,7 +94,7 @@ namespace :gem do
     require 'erb' # this should be moved out to the Rakefile
     template_file = File.join(GEM_TEMPLATE_DIR, 'travis.yml.erb')
 
-    File.open(File.join(PROJECT_ROOT, "#{ @gem_root }/.travis.yml"), 'w+') do |f|
+    File.open(File.join(PROJECT_ROOT, "#{@gem_root}/.travis.yml"), 'w+') do |f|
       f.write(ERB.new(get_template(template_file)).result)
     end
   end
@@ -109,7 +109,7 @@ namespace :gem do
     chdir @gem_root
     `git init`
     `git remote add origin git@github.com:sensu-plugins/#{ @gem_root }.git`
-    mkdir_p ["lib/#{ @gem_root }", 'bin']
+    mkdir_p ["lib/#{@gem_root}", 'bin']
     cp(File.join(GEM_STATIC_DIR, 'Gemfile'), '.', verbose: false)
     cp(File.join(GEM_STATIC_DIR, 'gitignore'), './.gitignore', verbose: false)
     cp_r(File.join(GEM_STATIC_DIR, 'certs'), '.', verbose: false)
