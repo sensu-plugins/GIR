@@ -121,12 +121,17 @@ RELEASE_PRERELEASE           = ENV['prerelease'] || false
 # these labels are used by waffle.io for sorting issues into columns
 STD_PLUGIN_LABELS            = [{ name: 'Investigation Required', color: '5319e7' },
                                 { name: 'In Progress', color: 'fad8c7' },
-                                { name: 'Community Feedback Requested', color: 'fbca04' },
-                                { name: 'Developer Feedback Requested', color: 'c7def8' },
-                                { name: 'Refactor', color: '005200' },
-                                { name: 'Bug', color: 'fc2929' },
-                                { name: 'Enhancement', color: '84b6eb' }]
+                                { name: 'Feedback Requested', color: 'fbca04' },
+                                # { name: 'Developer Feedback Requested', color: 'c7def8' },
+                                { name: 'Needs Review', color: '005200' },
+                                { name: 'Bug', color: 'fc2929' }]
+                                # { name: 'Enhancement', color: '84b6eb' }]
 # { name: 'Help Wanted', color: '159818' }]
 
 # these labels are ones we don't push to waffle.io
-GITHUB_REMOVABLE_STD_LABELS  = %w(duplicate invalid wontfix question enhancement bug)
+GITHUB_REMOVABLE_STD_LABELS  = ['duplicate' 'invalid' 'wontfix' 'question' 'enhancement' 'bug']
+GITHUB_REMOVABLE_STD_LABELS << "Developer Feedback Requested"
+GITHUB_REMOVABLE_STD_LABELS << "Community Feedback Requested"
+GITHUB_REMOVABLE_STD_LABELS << "Enhancement"
+GITHUB_REMOVABLE_STD_LABELS << "Refactor"
+GITHUB_REMOVABLE_STD_LABELS << "help wanted"

@@ -48,7 +48,7 @@ def set_auth
 end
 
 def set_github_repo_name
-  @github_repo = "sensu-plugins-#{ @plugin_name }"
+  @github_repo = @plugin_name
 end
 
 def get_template(input)
