@@ -12,7 +12,7 @@ namespace :gem do
   desc 'Generate a version module from a template'
   task :drop_version do
     require 'erb' # this should be moved out to the Rakefile
-    template_file = File.join(GEM_TEMPLATE_DIR, 'sensu-plugins-version.rb.erb')
+    template_file = File.join(GEM_TEMPLATE_DIR, 'version.rb.erb')
 
     File.open(File.join(PROJECT_ROOT, "#{ @gem_root }/lib/#{ @gem_root }.rb"), 'w+') do |f|
       f.write(ERB.new(get_template(template_file)).result)
